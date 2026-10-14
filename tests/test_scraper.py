@@ -209,19 +209,19 @@ def test_espn_supplies_nationality_and_missing_card_times():
 
     fighters = {x.name: x for e in events for f in e.fights for x in f.fighters}
     assert (fighters["SuYoung You"].country, fighters["SuYoung You"].country_source) == (
-        "South Korea",
+        "KR",
         "espn",
     )
     # FightMetric only knows the birthplace (USA); ESPN has the nationality.
     assert fighters["Mike Malott"].born_country_code == "USA"
-    assert fighters["Mike Malott"].country == "Canada"
+    assert fighters["Mike Malott"].country == "CA"
     # Case and accent differences between the sources still match.
     assert fighters["Julien Leblanc"].country_source == "espn"
     assert fighters["Cristian Perez"].country_source == "espn"
 
     lee_fight = next(f for f in events[1].fights if f.fighters[1].name == "JeongYeong Lee")
     assert lee_fight.espn_start == utc(2026, 10, 31, 21)
-    assert cache[str(fighters["SuYoung You"].fighter_id)]["country"] == "South Korea"
+    assert cache[str(fighters["SuYoung You"].fighter_id)]["country"] == "KR"
 
 
 def test_nationality_falls_back_to_cache_then_birthplace():
@@ -235,10 +235,10 @@ def test_nationality_falls_back_to_cache_then_birthplace():
     apply_espn([fallback], [], {})
 
     one, two = cached.fights[0].fighters
-    assert (one.country, one.country_source) == ("Canada", "espn-cache")
-    assert (two.country, two.country_source) == ("South Korea", "espn-cache")
+    assert (one.country, one.country_source) == ("CA", "espn-cache")
+    assert (two.country, two.country_source) == ("KR", "espn-cache")  # old name-style cache
     one, two = fallback.fights[0].fighters
-    assert (one.country, one.country_source) == ("KOR", "fightmetric-born")
+    assert (one.country, one.country_source) == ("KR", "fightmetric-born")
     assert two.country is None
 
 

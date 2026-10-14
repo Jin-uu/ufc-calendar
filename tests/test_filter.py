@@ -1,16 +1,10 @@
 import logging
 
-import pytest
 from helpers import event, fight, fighter, load_fixture, utc
 
-from ufc_calendar.filter import is_korean, select_fights
-from ufc_calendar.ics import summary_for
+from ufc_calendar.filter import DEFAULT_FEED, Feed, all_feeds, collect_bouts, matches
 from ufc_calendar.models import Card, EventKind
 from ufc_calendar.scraper import apply_espn, parse_event
-
-
-def selected_ids(*events):
-    return [s.fight.fight_id for s in select_fights(events)]
 
 
 def fixture_event(event_id):
@@ -19,57 +13,62 @@ def fixture_event(event_id):
     return parsed
 
 
-def test_selects_korean_fighter_main_and_co_main_from_real_card():
-    assert selected_ids(fixture_event(1332)) == [13002, 13046, 13132]
+def selected(feed, *events):
+    return [b.fight.fight_id for b in collect_bouts(events) if matches(feed, b)]
 
 
-def test_regular_undercard_bout_is_excluded():
+def headliners(*events):
+    return [
+        (b.fight.fight_id, b.main, b.co_main) for b in collect_bouts(events) if b.main or b.co_main
+    ]
+
+
+def test_default_feed_selects_korean_fighter_main_and_co_main():
+    assert selected(DEFAULT_FEED, fixture_event(1332)) == [13002, 13046, 13132]
+
+
+def test_undercard_bout_without_the_country_is_excluded():
     card = event(
         fight(1, 1, Card.MAIN, fighter("A"), fighter("B")),
         fight(2, 2, Card.MAIN, fighter("C"), fighter("D")),
         fight(3, 3, Card.MAIN, fighter("E"), fighter("F")),
-        fight(4, 4, Card.PRELIMS, fighter("G"), fighter("H")),
+        fight(4, 4, Card.PRELIMS, fighter("G"), fighter("H", country="JP")),
     )
-    assert selected_ids(card) == [1, 2]
+    assert selected(DEFAULT_FEED, card) == [1, 2]
+    assert selected(Feed("JP", headline="none"), card) == [4]
+    assert selected(Feed("JP", headline="main"), card) == [1, 4]
 
 
-def test_korean_fighter_on_prelims_is_included():
+def test_headline_options():
     card = event(
         fight(1, 1, Card.MAIN, fighter("A"), fighter("B")),
-        fight(5, 7, Card.PRELIMS, fighter("Seokhyeon Ko", country="KOR"), fighter("X")),
+        fight(2, 2, Card.MAIN, fighter("C"), fighter("D")),
+        fight(3, 3, Card.MAIN, fighter("E"), fighter("F")),
     )
-
-    selection = select_fights([card])[-1]
-
-    assert selection.fight.fight_id == 5
-    assert [f.name for f in selection.koreans] == ["Seokhyeon Ko"]
-    assert summary_for(selection) == "🇰🇷 UFC | Seokhyeon Ko vs X"
+    assert selected(Feed(None, headline="both"), card) == [1, 2]
+    assert selected(Feed(None, headline="main"), card) == [1]
+    assert selected(Feed(None, headline="comain"), card) == [2]
+    assert selected(Feed(None, headline="none"), card) == []
 
 
-def test_korean_main_event_is_a_single_entry_with_both_labels():
+def test_gender_filter():
+    women = fight(2, 2, Card.MAIN, fighter("C"), fighter("D"), weight_class="Women's Flyweight")
+    catchweight = fight(3, 5, Card.PRELIMS, fighter("E", country="KR"), fighter("F"),
+                        weight_class="Catchweight (130 lb)")  # fmt: skip
+    catchweight.fighters[0].divisions = ("Women's Strawweight",)
+    card = event(fight(1, 1, Card.MAIN, fighter("A"), fighter("B")), women, catchweight)
+
+    assert selected(Feed("KR", gender="all"), card) == [1, 2, 3]
+    assert selected(Feed("KR", gender="men"), card) == [1]
+    assert selected(Feed("KR", gender="women"), card) == [2, 3]
+
+
+def test_korean_main_event_is_a_single_bout():
     card = event(
-        fight(1, 1, Card.MAIN, fighter("Korean Zombie", country="South Korea"), fighter("B")),
+        fight(1, 1, Card.MAIN, fighter("Korean Zombie", country="KR"), fighter("B")),
         fight(2, 2, Card.MAIN, fighter("C"), fighter("D")),
     )
-
-    selections = select_fights([card])
-
-    assert [s.fight.fight_id for s in selections] == [1, 2]
-    assert summary_for(selections[0]) == "🇰🇷 UFC Main | Korean Zombie vs B"
-    assert summary_for(selections[1]) == "🥊 UFC Co-Main | C vs D"
-
-
-def test_korean_co_main_is_a_single_entry():
-    card = event(
-        fight(1, 1, Card.MAIN, fighter("A"), fighter("B")),
-        fight(2, 2, Card.MAIN, fighter("C"), fighter("Dooho Choi", country="KOR")),
-    )
-
-    selections = select_fights([card])
-
-    assert len(selections) == 2
-    assert summary_for(selections[0]) == "🥊 UFC Main | A vs B"
-    assert summary_for(selections[1]) == "🇰🇷 UFC Co-Main | C vs Dooho Choi"
+    assert selected(DEFAULT_FEED, card) == [1, 2]
 
 
 def test_missing_nationality_is_not_guessed_and_is_logged(caplog):
@@ -79,31 +78,13 @@ def test_missing_nationality_is_not_guessed_and_is_logged(caplog):
     )
 
     with caplog.at_level(logging.WARNING):
-        assert selected_ids(card) == [1]
+        assert selected(DEFAULT_FEED, card) == [1]
     assert "nationality unknown for Kim Unknown" in caplog.text
-
-
-@pytest.mark.parametrize(
-    ("country", "expected"),
-    [
-        ("KOR", True),
-        ("South Korea", True),
-        ("Republic of Korea", True),
-        (" kor ", True),
-        ("North Korea", False),
-        ("PRK", False),
-        ("JPN", False),
-        (None, None),
-        ("", None),
-    ],
-)
-def test_is_korean(country, expected):
-    assert is_korean(fighter("X", country=country)) is expected
 
 
 def test_co_main_must_be_on_the_main_card():
     # Bout 2 of this card sits on the prelims while the main card is not filled in yet.
-    assert selected_ids(fixture_event(1339)) == [13133, 13178]
+    assert headliners(fixture_event(1339)) == [(13133, True, False)]
 
 
 def test_unassigned_co_main_needs_espn_evidence():
@@ -122,9 +103,9 @@ def test_unassigned_co_main_needs_espn_evidence():
         fight(2, 2, None, fighter("C"), fighter("D"), espn_start=main_time),
     )
 
-    assert selected_ids(without) == [1]
-    assert selected_ids(with_espn) == [1, 2]
-    assert selected_ids(single_espn_time) == [1]
+    assert headliners(without) == [(1, True, False)]
+    assert headliners(with_espn) == [(1, True, False), (2, False, True)]
+    assert headliners(single_espn_time) == [(1, True, False)]
 
 
 def test_unclear_order_does_not_create_main_or_co_main(caplog):
@@ -134,33 +115,36 @@ def test_unclear_order_does_not_create_main_or_co_main(caplog):
         fight(3, None, Card.MAIN, fighter("E"), fighter("F")),
     )
 
-    assert selected_ids(card) == []
+    assert headliners(card) == []
     assert "not unique" in caplog.text
 
 
-def test_road_to_ufc_and_contender_series_only_include_koreans():
+def test_side_events_only_contribute_country_bouts_when_enabled():
     for kind in (EventKind.ROAD_TO_UFC, EventKind.CONTENDER_SERIES):
         card = event(
             fight(1, 1, Card.MAIN, fighter("A"), fighter("B")),
-            fight(2, 2, Card.MAIN, fighter("C"), fighter("D")),
-            fight(3, 3, Card.MAIN, fighter("YoungJae Song", country="KOR"), fighter("E")),
+            fight(3, 3, Card.MAIN, fighter("YoungJae Song", country="KR"), fighter("E")),
             kind=kind,
         )
-        selections = select_fights([card])
-        assert [s.fight.fight_id for s in selections] == [3]
-        assert not selections[0].main
-
-
-def test_road_to_ufc_title():
-    card = event(
-        fight(3, 1, Card.MAIN, fighter("BoHyun Park", country="KOR"), fighter("E")),
-        kind=EventKind.ROAD_TO_UFC,
-    )
-    assert summary_for(select_fights([card])[0]) == "🇰🇷 Road to UFC | BoHyun Park vs E"
+        assert selected(Feed("KR", side=True), card) == [3]
+        assert selected(Feed("KR", side=False), card) == []
+        assert headliners(card) == []
 
 
 def test_other_organisations_are_ignored():
     card = event(
-        fight(1, 1, Card.MAIN, fighter("A", country="KOR"), fighter("B")), kind=EventKind.OTHER
+        fight(1, 1, Card.MAIN, fighter("A", country="KR"), fighter("B")), kind=EventKind.OTHER
     )
-    assert selected_ids(card) == []
+    assert collect_bouts([card]) == []
+
+
+def test_feed_slugs_and_combinations():
+    assert DEFAULT_FEED.slug == "kr-all-both-rtu"
+    assert Feed(None, "women", "main", True).slug == "all-women-main-ufc"
+    assert Feed("JP", "men", "none", False).slug == "jp-men-none-ufc"
+
+    feeds = all_feeds(["KR", "JP", "KR"])
+    slugs = [f.slug for f in feeds]
+    assert len(slugs) == len(set(slugs)) == 9 + 2 * 24
+    assert DEFAULT_FEED in feeds
+    assert Feed(None, headline="none", side=False) not in feeds  # selects nothing

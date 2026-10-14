@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UFC 캘린더 구독</title>
+<style>
+  :root { color-scheme: light dark; --fg: #1d1d1f; --muted: #6e6e73; --line: #d2d2d7;
+          --bg: #fff; --panel: #f5f5f7; --accent: #d20a0a; }
+  @media (prefers-color-scheme: dark) {
+    :root { --fg: #f5f5f7; --muted: #a1a1a6; --line: #38383a; --bg: #111; --panel: #1c1c1e; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0 auto; max-width: 720px; padding: 24px 16px 48px; color: var(--fg);
+         background: var(--bg);
+         font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; }
+  h1 { font-size: 1.6rem; margin: 0 0 4px; }
+  h2 { font-size: 1.1rem; margin: 32px 0 8px; }
+  .muted { color: var(--muted); font-size: .9rem; }
+  form { display: grid; gap: 16px; margin-top: 24px; padding: 16px; border-radius: 12px;
+         background: var(--panel); }
+  fieldset { border: 0; margin: 0; padding: 0; }
+  legend, label.title { display: block; font-weight: 600; margin-bottom: 6px; }
+  select { width: 100%; padding: 8px; border-radius: 8px; border: 1px solid var(--line);
+           background: var(--bg); color: var(--fg); font-size: 1rem; }
+  .choices { display: flex; flex-wrap: wrap; gap: 8px; }
+  .choices label { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px;
+                   border: 1px solid var(--line); border-radius: 999px; cursor: pointer;
+                   background: var(--bg); }
+  .choices input { accent-color: var(--accent); }
+  .disabled { opacity: .45; }
+  .result { margin-top: 24px; }
+  code { display: block; padding: 10px 12px; border-radius: 8px; background: var(--panel);
+         word-break: break-all; font-size: .9rem; }
+  .buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .button { display: inline-block; padding: 10px 16px; border-radius: 8px; border: 0;
+            background: var(--accent); color: #fff; text-decoration: none; font-weight: 600;
+            font-size: 1rem; cursor: pointer; }
+  .button.secondary { background: var(--panel); color: var(--fg); border: 1px solid var(--line); }
+  .warning { color: var(--accent); font-weight: 600; }
+  ul { padding-left: 0; list-style: none; margin: 0; }
+  li { padding: 8px 0; border-bottom: 1px solid var(--line); }
+  time { display: block; color: var(--muted); font-size: .85rem; }
+</style>
+</head>
+<body>
+<h1>UFC 캘린더 구독</h1>
+<p class="muted">원하는 조건을 고르면 그 조건의 캘린더 URL이 만들어집니다.
+매일 자동 갱신되며 시간은 한국 시간(카드 시작 시간)입니다.
+<span id="updated"></span></p>
+
+<form id="settings">
+  <div>
+    <label class="title" for="country">국가 (해당 국가 선수 출전 경기)</label>
+    <select id="country"></select>
+  </div>
+  <fieldset>
+    <legend>메인 / 코메인 이벤트 (UFC 대회 전체)</legend>
+    <div class="choices">
+      <label><input type="radio" name="headline" value="both" checked> 메인 + 코메인</label>
+      <label><input type="radio" name="headline" value="main"> 메인만</label>
+      <label><input type="radio" name="headline" value="comain"> 코메인만</label>
+      <label><input type="radio" name="headline" value="none"> 포함 안 함</label>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>성별</legend>
+    <div class="choices">
+      <label><input type="radio" name="gender" value="all" checked> 전체</label>
+      <label><input type="radio" name="gender" value="men"> 남자부</label>
+      <label><input type="radio" name="gender" value="women"> 여자부</label>
+    </div>
+  </fieldset>
+  <fieldset id="side-field">
+    <legend>기타 대회</legend>
+    <div class="choices">
+      <label><input type="checkbox" id="side" checked> Road to UFC · Contender Series의 해당 국가 경기 포함</label>
+    </div>
+  </fieldset>
+</form>
+
+<section class="result">
+  <p id="invalid" class="warning" hidden>국가를 고르거나 메인/코메인을 포함해 주세요.</p>
+  <div id="valid">
+    <code id="url"></code>
+    <div class="buttons">
+      <a class="button" id="subscribe" href="#">Apple 캘린더에서 구독</a>
+      <button class="button secondary" id="copy" type="button">URL 복사</button>
+    </div>
+    <h2>예정된 경기 미리보기</h2>
+    <ul id="preview"></ul>
+  </div>
+</section>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+  const data = JSON.parse(document.getElementById("data").textContent);
+  const $ = (id) => document.getElementById(id);
+  const labels = { ufc: "UFC", road_to_ufc: "Road to UFC", contender_series: "DWCS" };
+  const flags = Object.fromEntries(data.countries.map((c) => [c.code, c.flag]));
+
+  $("updated").textContent = `(마지막 갱신 ${data.updated})`;
+  $("country").append(new Option("선택 안 함", ""));
+  for (const c of data.countries) {
+    const count = c.upcoming ? ` · 예정 ${c.upcoming}경기` : "";
+    $("country").append(new Option(`${c.flag} ${c.name}${count}`, c.code));
+  }
+  $("country").value = data.defaultCountry;
+
+  function settings() {
+    const form = $("settings");
+    return {
+      country: $("country").value || null,
+      gender: form.gender.value,
+      headline: form.headline.value,
+      side: $("side").checked,
+    };
+  }
+
+  // Same rules as filter.py: Feed.slug and matches().
+  function slug(s) {
+    const side = s.country && s.side ? "rtu" : "ufc";
+    return `${(s.country || "all").toLowerCase()}-${s.gender}-${s.headline}-${side}`;
+  }
+  function matches(s, e) {
+    if ((s.gender === "men" && e.women) || (s.gender === "women" && !e.women)) return false;
+    const byCountry = s.country && e.countries.includes(s.country) && (e.kind === "ufc" || s.side);
+    const byHeadline = e.kind === "ufc" &&
+      ((["main", "both"].includes(s.headline) && e.main) ||
+       (["comain", "both"].includes(s.headline) && e.coMain));
+    return Boolean(byCountry || byHeadline);
+  }
+  function summary(s, e) {
+    let label = labels[e.kind] || "UFC";
+    if (e.main) label += " Main"; else if (e.coMain) label += " Co-Main";
+    const icon = s.country && e.countries.includes(s.country) ? flags[s.country] : "🥊";
+    return `${icon} ${label} | ${e.matchup}`;
+  }
+
+  function update() {
+    const s = settings();
+    $("side-field").classList.toggle("disabled", !s.country);
+    $("side").disabled = !s.country;
+    const valid = Boolean(s.country) || s.headline !== "none";
+    $("invalid").hidden = valid;
+    $("valid").hidden = !valid;
+    if (!valid) return;
+    const url = new URL(`feeds/${slug(s)}.ics`, location.href).href;
+    $("url").textContent = url;
+    $("subscribe").href = url.replace(/^https?:/, "webcal:");
+    const rows = data.entries.filter((e) => matches(s, e));
+    $("preview").replaceChildren(...(rows.length ? rows.map((e) => {
+      const li = document.createElement("li");
+      const time = document.createElement("time");
+      time.textContent = e.when;
+      li.append(time, summary(s, e));
+      return li;
+    }) : [Object.assign(document.createElement("li"), { textContent: "예정된 경기가 없습니다." })]));
+  }
+
+  $("settings").addEventListener("change", update);
+  $("copy").addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText($("url").textContent);
+      $("copy").textContent = "복사됨";
+      setTimeout(() => { $("copy").textContent = "URL 복사"; }, 1500);
+    } catch { /* clipboard unavailable: the URL is shown above */ }
+  });
+  update();
+</script>
+</body>
+</html>

@@ -1,20 +1,32 @@
 # ufc-calendar
 
-Builds an iCalendar feed of UFC bouts featuring Korean fighters, plus every main and co-main event, for subscription in Apple Calendar. GitHub Actions refreshes the data daily and GitHub Pages serves the feed at a fixed URL. No server or paid API is used.
+Builds iCalendar feeds of UFC bouts for subscription in Apple Calendar. Feeds are selected on a settings page by country, gender, main/co-main events and Road to UFC / Contender Series. GitHub Actions refreshes the data daily and GitHub Pages serves every feed at a fixed URL. No server or paid API is used.
 
 ```
-https://jin-uu.github.io/ufc-calendar/ufc.ics
+Settings page: https://jin-uu.github.io/ufc-calendar/
+Default feed:  https://jin-uu.github.io/ufc-calendar/ufc.ics   (Korean fighters + main/co-main)
 ```
 
-| Title | Condition | Start time (KST) |
+### Feed settings
+
+| Setting | Values | Effect |
 |---|---|---|
-| `🇰🇷 UFC \| A vs B` | Korean fighter | Start of the bout's card (main / prelims / early prelims) |
-| `🥊 UFC Main \| A vs B` | Main event | Main card start |
-| `🥊 UFC Co-Main \| A vs B` | Co-main event | Main card start |
-| `🇰🇷 UFC Main \| …`, `🇰🇷 UFC Co-Main \| …` | Korean fighter in main / co-main | Main card start |
-| `🇰🇷 Road to UFC \| …`, `🇰🇷 DWCS \| …` | Korean fighter at Road to UFC / Contender Series | Card start |
+| Country | none, or one country | Bouts with a fighter of that nationality |
+| Main / co-main | both, main, co-main, none | Main and/or co-main events of every UFC event |
+| Gender | all, men, women | Restricts the result (women = women's divisions, incl. catchweights between women) |
+| Other events | on, off | Also takes the country's bouts from Road to UFC and Contender Series |
 
-All three conditions apply to UFC events (numbered, Fight Night, Noche UFC). Road to UFC and DWCS contribute Korean bouts only. A bout matching several conditions produces one entry.
+A bout is included if it matches the country or the main/co-main setting, and the gender setting. Each combination is a pre-built file `feeds/<country>-<gender>-<headline>-<rtu|ufc>.ics` (e.g. `feeds/jp-women-none-ufc.ics`). The page only assembles the URL; it does not generate data. One country per feed: subscribe to several feeds for several countries. Countries appear on the page once a fighter of that nationality has been collected and are never removed, so subscribed URLs stay valid. `ufc.ics` equals `feeds/kr-all-both-rtu.ics`.
+
+| Title | Meaning |
+|---|---|
+| `🇰🇷 UFC \| A vs B` | Bout with a fighter of the selected country (flag of that country) |
+| `🥊 UFC Main \| A vs B`, `🥊 UFC Co-Main \| A vs B` | Main / co-main event |
+| `🇰🇷 UFC Main \| …` | Selected country's fighter in the main event |
+| `🇰🇷 Road to UFC \| …`, `🇰🇷 DWCS \| …` | Country bout at Road to UFC / Contender Series |
+| `❌ 취소 \| …` | Cancelled bout |
+
+Start times are in KST and mark the start of the bout's card (main / prelims / early prelims).
 
 ## 1. Architecture
 
@@ -24,11 +36,11 @@ flowchart LR
         A[Load previous state.json<br/>from Pages] --> B[Collect UFC data<br/>FightMetric feed]
         B --> C[Validate<br/>abort on abnormal drop]
         C --> D[Enrich from ESPN<br/>nationality, card times]
-        D --> E[Filter<br/>Korean, main, co-main]
-        E --> F[Merge with previous entries<br/>UIDs, changes, cancellations]
-        F --> G[Build + validate ufc.ics]
+        D --> E[Collect all bouts<br/>country, gender, main, co-main]
+        E --> F[Merge with previous master entries<br/>UIDs, changes, cancellations]
+        F --> G[Build + validate one .ics per feed]
     end
-    G --> H[GitHub Pages<br/>ufc.ics, state.json, index.html]
+    G --> H[GitHub Pages<br/>feeds/*.ics, ufc.ics, index.html, state.json]
     H --> I[Apple Calendar]
     H -. next run .-> A
 ```
@@ -37,21 +49,24 @@ flowchart LR
 |---|---|
 | [`scraper.py`](src/ufc_calendar/scraper.py) | HTTP with timeout/retry, FightMetric discovery and parsing, ESPN matching |
 | [`models.py`](src/ufc_calendar/models.py) | `Event`, `Fight`, `Fighter` |
-| [`filter.py`](src/ufc_calendar/filter.py) | Korean fighter, main and co-main detection |
+| [`countries.py`](src/ufc_calendar/countries.py) | IOC codes / ESPN names → ISO alpha-2, names, flags |
+| [`filter.py`](src/ufc_calendar/filter.py) | Feed definitions, feed matching, main and co-main detection |
 | [`schedule.py`](src/ufc_calendar/schedule.py) | Timestamp parsing, KST conversion, card start selection |
-| [`state.py`](src/ufc_calendar/state.py) | State across runs: UIDs, SEQUENCE, cancellation, removal |
-| [`ics.py`](src/ufc_calendar/ics.py) | Summary/description text, RFC 5545 output and validation |
+| [`state.py`](src/ufc_calendar/state.py) | Master entries across runs: UIDs, SEQUENCE, cancellation, replacement |
+| [`ics.py`](src/ufc_calendar/ics.py) | Per-feed titles and selection, RFC 5545 output and validation |
 | [`main.py`](src/ufc_calendar/main.py) | CLI, pipeline, failure handling, output |
+| [`index.html`](src/ufc_calendar/index.html) | Settings page template |
 
 The ICS module is named `ics.py` to avoid shadowing the standard library `calendar` module.
 
 Output (`output/` locally, `public/` in Actions):
 
-- `ufc.ics`: subscription feed.
-- `state.json`: state read by the next run (entries, UIDs, event snapshots, nationality cache). Public fight data only.
-- `index.html`: landing page with the subscription link and upcoming entries.
+- `feeds/*.ics`: one calendar per setting combination (9 + 24 per country, about 800 files, ~7 MB).
+- `ufc.ics`: the default feed.
+- `index.html`: settings page with subscription link and preview.
+- `state.json`: state read by the next run (master entries, UIDs, event snapshots, nationality cache, countries). Public fight data only.
 
-The previous state is read back from GitHub Pages, so the workflow needs no repository write access.
+Every collected bout is one master entry carrying its attributes (countries, gender, main, co-main, event type). UIDs and cancellations are tracked once on the master entries; each feed is a filtered view, so a bout has the same UID in every feed. The previous state is read back from GitHub Pages, so the workflow needs no repository write access.
 
 ## 2. Data sources
 
@@ -70,7 +85,7 @@ The previous state is read back from GitHub Pages, so the workflow needs no repo
 
 - Both endpoints are undocumented and may change without notice. Responses are validated; anomalies abort deployment. Request volume is low (tens per day).
 - FightMetric has no event listing. Event ids are sequential, so the scan starts at the smallest upcoming id from the previous run and stops after 10 consecutive unused ids (about 30–40 requests per run, 0.25 s apart).
-- Nationality fallback order: ESPN → cached ESPN value → FightMetric birthplace. Names are never used to infer nationality.
+- Nationality fallback order: ESPN → cached ESPN value → FightMetric birthplace. Names are never used to infer nationality. All spellings are normalised to ISO 3166-1 alpha-2 (FightMetric uses IOC codes, e.g. `BRN` = Bahrain).
 
 ## 3. Local usage
 
@@ -105,11 +120,12 @@ Tests use trimmed real responses (`tests/fixtures/`) and a fake HTTP session; no
 | File | Coverage |
 |---|---|
 | `test_scraper.py` | Parsing, missing fields, HTTP/network/JSON errors, unconfirmed cards, id scan, snapshot fallback, ESPN matching |
-| `test_filter.py` | Korean inclusion, undercard exclusion, main/co-main, deduplication, missing nationality, ambiguous order, RTU/DWCS |
+| `test_filter.py` | Country / headline / gender / side-event settings, feed slugs, main/co-main detection, missing nationality, ambiguous order |
+| `test_countries.py` | IOC / ISO / name normalisation, names, flags |
 | `test_schedule.py` | UTC → Asia/Seoul, US DST, per-card start, missing-time fallbacks |
-| `test_ics.py` | Validity, escaping, newlines, Korean/emoji, 75-octet folding, determinism, validation errors |
-| `test_state.py` | UID stability (same bout, time/date change, replacement, re-created bout), no duplicates, cancel/restore/remove, history |
-| `test_main.py` | End-to-end, failure preserves output, abnormal-drop abort, ESPN outage, remote previous state |
+| `test_ics.py` | Validity, per-feed titles and names, cancelled-copy visibility, escaping, Korean/emoji, 75-octet folding, determinism |
+| `test_state.py` | UID stability (same bout, time/date change, replacement, re-created bout), cancelled copies, no duplicates, cancel/restore/remove, history |
+| `test_main.py` | End-to-end incl. feed files and settings page data, failure preserves output, abnormal-drop abort, ESPN outage, remote previous state |
 
 ## 5. GitHub Actions
 
@@ -144,17 +160,19 @@ GitHub Pages on the free plan requires a public repository.
 
 ## 7. Apple Calendar subscription
 
+Choose the settings on `https://jin-uu.github.io/ufc-calendar/`, then either press **Apple 캘린더에서 구독** (opens a `webcal://` link) or copy the URL.
+
 ### macOS
 
 1. Calendar → File → New Calendar Subscription.
-2. Enter `https://jin-uu.github.io/ufc-calendar/ufc.ics` → Subscribe.
+2. Enter the feed URL → Subscribe.
 3. Location: **iCloud** (syncs to iPhone). Auto-refresh: daily or hourly. The feed contains no alerts.
 
 ### iOS / iPadOS
 
 Not required if subscribed via iCloud on macOS.
 
-- Open `https://jin-uu.github.io/ufc-calendar/` in Safari and tap **Apple 캘린더에서 구독**, or
+- Open the settings page in Safari, choose the settings and tap **Apple 캘린더에서 구독**, or
 - Settings → Apps → Calendar → Calendar Accounts → Add Account → Other → Add Subscribed Calendar (iOS 17 and earlier: Settings → Calendar → Accounts), then enter the feed URL.
 
 Subscribed calendars are read-only. Refresh timing is controlled by the device; iCloud subscriptions may lag by hours.
@@ -169,8 +187,8 @@ UIDs derive from the FightMetric `FightId` (`fight-13132@ufc-calendar`), never f
 | Fighter replaced, same `FightId` | Same UID; title and description updated |
 | Fighter replaced, new `FightId` | Inherits the UID of a vanished bout in the same event sharing a fighter |
 | Bout cancelled, removed, or event deleted | Prefixed `❌ 취소 \|`, `STATUS:CANCELLED`; removed one day after the original time |
-| Korean fighter replaced, same `FightId` | Treated as cancelled |
-| Bout still scheduled but no longer qualifies | Entry removed |
+| Fighter leaves a bout (replacement) | The bout keeps its UID; a cancelled copy of the old version is shown only in feeds where the current version no longer appears (e.g. the country feed of the replaced fighter) |
+| Bout no longer matches a feed (e.g. no longer co-main) | Disappears from that feed |
 | Bout finished | Kept unchanged for one year; results not shown |
 
 Start time precedence (the source is stated in the description; entries last one hour):
@@ -187,9 +205,10 @@ Main/co-main: bout order 1 is the main event, 2 the co-main. Duplicate or missin
 
 ## 9. Known limitations
 
-- Undocumented APIs. Format changes stop updates; the existing calendar is preserved.
+- Undocumented APIs. Format changes stop updates; the existing calendars are preserved.
+- One country per feed (combinations are pre-built). Several countries require several subscriptions; a bout between two selected countries then appears in both calendars.
 - Event discovery depends on sequential ids. A change in id allocation may require adjusting `--seed-event-id`.
-- Fighters absent from ESPN are classified by birthplace; dual nationals or foreign-born fighters may be misclassified. Undeterminable fighters are logged and not treated as Korean.
+- Fighters absent from ESPN are classified by birthplace; dual nationals or foreign-born fighters may be misclassified. Undeterminable fighters are logged and match no country.
 - Newly announced cards often lack segment assignments. Times then come from ESPN, and co-mains may appear late.
 - Fight Night URLs are built from the local date (`ufc.com/event/ufc-fight-night-<month>-<dd>-<yyyy>`) and may occasionally differ. Road to UFC and DWCS link to the events page.
 - Propagation delay: Actions scheduling, Pages CDN cache (~10 min), and Apple Calendar refresh interval.

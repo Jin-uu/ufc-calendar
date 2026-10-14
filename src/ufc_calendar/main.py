@@ -1,13 +1,13 @@
-"""Command line entry point: collect, filter, build, validate and write the calendar.
+"""Command line entry point: collect, filter, build, validate and write the calendars.
 
 Nothing is written unless every step succeeds, so a failed run leaves the previously published
-calendar untouched.
+calendars untouched.
 """
 
 from __future__ import annotations
 
 import argparse
-import html
+import json
 import logging
 import os
 from collections import Counter
@@ -17,8 +17,15 @@ from pathlib import Path
 
 import requests
 
-from .filter import select_fights
-from .ics import CalendarValidationError, build_calendar, draft_for, validate_calendar
+from .countries import country_name, flag
+from .filter import DEFAULT_COUNTRY, DEFAULT_FEED, all_feeds, collect_bouts, matches
+from .ics import (
+    CalendarValidationError,
+    build_calendar,
+    draft_for,
+    summary_for,
+    validate_calendar,
+)
 from .models import Event, EventKind
 from .schedule import KST, parse_timestamp
 from .scraper import (
@@ -46,7 +53,7 @@ class AbortError(Exception):
 def parse_args(argv: list[str] | None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog="ufc-calendar",
-        description="Build an iCalendar feed of UFC bouts with Korean fighters and headliners.",
+        description="Build iCalendar feeds of UFC bouts filtered by country, gender and headline.",
     )
     parser.add_argument("--output-dir", type=Path, default=Path("output"))
     parser.add_argument(
@@ -120,20 +127,30 @@ def run(args: argparse.Namespace, session: requests.Session) -> list[Entry]:
         bouts = []
     nationalities = apply_espn(window, bouts, previous.nationalities)
 
-    # 3. Filter and merge with the previous calendar.
-    drafts = [d for d in map(draft_for, select_fights(window)) if d]
+    # 3. Merge every bout into the master entries.
+    bouts = collect_bouts(window)
+    drafts = [d for d in map(draft_for, bouts) if d]
     entries, changes = reconcile(previous.entries, drafts, cards_of(events), now, cutoff)
     log.info("Calendar changes: %s", dict(sorted(changes.items())))
     check_cancellations(previous.entries, changes, cutoff, args.allow_drop)
 
-    # 4. Build, validate and write.
-    calendar = build_calendar(entries)
-    log.info("ufc.ics is valid: %d events", validate_calendar(calendar))
+    # 4. Build and validate one calendar per feed, then write everything.
+    countries = sorted(
+        set(previous.countries) | {c for b in bouts for c in b.countries} | {DEFAULT_COUNTRY}
+    )
+    files: dict[str, bytes] = {}
+    for feed in all_feeds(countries):
+        calendar = build_calendar(entries, feed)
+        validate_calendar(calendar)
+        files[f"feeds/{feed.slug}.ics"] = calendar
+    files["ufc.ics"] = files[f"feeds/{DEFAULT_FEED.slug}.ics"]
+    log.info("Built and validated %d calendars for %d countries", len(files) - 1, len(countries))
     state = State(
         entries=entries,
         events={e.event_id: snapshot_event(scan.raw_events[e.event_id]) for e in upcoming},
         upcoming={e.event_id: e.start.isoformat() for e in upcoming},
         nationalities=nationalities,
+        countries=countries,
         scan_from=min(
             (e.event_id for e in upcoming),
             default=scan.highest_id or previous.scan_from or args.seed_event_id,
@@ -141,7 +158,9 @@ def run(args: argparse.Namespace, session: requests.Session) -> list[Entry]:
         max_event_id=scan.highest_id,
         generated_at=now.isoformat(timespec="seconds"),
     )
-    write_outputs(args.output_dir, calendar, state, render_index(entries, now))
+    files["index.html"] = render_index(entries, countries, now).encode("utf-8")
+    files["state.json"] = state.to_json().encode("utf-8")
+    write_outputs(args.output_dir, files)
     write_job_summary(entries, changes, now)
     return entries
 
@@ -211,7 +230,9 @@ def check_cancellations(
     previous: Iterable[Entry], changes: Counter, cutoff: datetime, allow_drop: bool
 ) -> None:
     """Stop when more than half of the upcoming entries would be cancelled at once."""
-    active = sum(1 for e in previous if e.status == CONFIRMED and e.begins >= cutoff)
+    active = sum(
+        1 for e in previous if e.status == CONFIRMED and not e.replaced_by and e.begins >= cutoff
+    )
     cancelled = changes["cancelled"]
     if cancelled >= 3 and cancelled > active // 2 and not allow_drop:
         raise AbortError(
@@ -220,18 +241,14 @@ def check_cancellations(
         )
 
 
-def write_outputs(output_dir: Path, calendar: bytes, state: State, index_html: str) -> None:
-    output_dir.mkdir(parents=True, exist_ok=True)
-    files = {
-        "ufc.ics": calendar,
-        "index.html": index_html.encode("utf-8"),
-        "state.json": state.to_json().encode("utf-8"),
-    }
+def write_outputs(output_dir: Path, files: Mapping[str, bytes]) -> None:
     for name, data in files.items():
-        temporary = output_dir / f".{name}.tmp"
+        path = output_dir / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        temporary = path.with_name(f".{path.name}.tmp")
         temporary.write_bytes(data)
-        temporary.replace(output_dir / name)
-    log.info("Wrote %s", ", ".join(str(output_dir / name) for name in files))
+        temporary.replace(path)
+    log.info("Wrote %d files to %s", len(files), output_dir)
 
 
 def _upcoming(entries: Iterable[Entry], now: datetime) -> list[Entry]:
@@ -244,76 +261,53 @@ def _when(entry: Entry) -> str:
     return f"{entry.day} (종일)"
 
 
-def render_index(entries: Iterable[Entry], now: datetime) -> str:
-    rows = (
-        "\n".join(
-            f"<li><time>{html.escape(_when(e))}</time> {html.escape(e.summary)}</li>"
-            for e in _upcoming(entries, now)
-        )
-        or "<li>예정된 경기가 없습니다.</li>"
-    )
-    updated = now.astimezone(KST).strftime("%Y-%m-%d %H:%M KST")
-    return INDEX_TEMPLATE.format(rows=rows, updated=updated)
+def render_index(entries: Iterable[Entry], countries: Iterable[str], now: datetime) -> str:
+    """The settings page: pick a feed, get its subscription URL and a preview."""
+    upcoming = [e for e in _upcoming(entries, now) if e.status == CONFIRMED]
+    counts = Counter(c for e in upcoming for c in e.countries)
+    data = {
+        "updated": now.astimezone(KST).strftime("%Y-%m-%d %H:%M KST"),
+        "defaultCountry": DEFAULT_COUNTRY,
+        "countries": sorted(
+            (
+                {"code": c, "name": country_name(c, korean=True), "flag": flag(c),
+                 "upcoming": counts[c]}
+                for c in countries
+            ),
+            key=lambda c: (c["code"] != DEFAULT_COUNTRY, -c["upcoming"], c["name"]),
+        ),
+        "entries": [
+            {"when": _when(e), "matchup": e.matchup, "kind": e.kind, "main": e.main,
+             "coMain": e.co_main, "women": e.women, "countries": e.countries}
+            for e in upcoming
+        ],
+    }  # fmt: skip
+    payload = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
+    return INDEX_TEMPLATE.replace("__DATA__", payload)
 
 
 def write_job_summary(entries: Iterable[Entry], changes: Counter, now: datetime) -> None:
     path = os.environ.get("GITHUB_STEP_SUMMARY")
     if not path:
         return
+    shown = [e for e in _upcoming(entries, now) if e.status == CONFIRMED]
     lines = [
         "## UFC calendar updated",
         "",
         "Changes: " + (", ".join(f"{k} {v}" for k, v in sorted(changes.items())) or "none"),
         "",
+        f"Default feed (`ufc.ics`, {DEFAULT_FEED.slug}):",
+        "",
         "| When (KST) | Entry |",
         "|---|---|",
     ]
-    lines += [f"| {_when(e)} | {e.summary.replace('|', '¦')} |" for e in _upcoming(entries, now)]
+    lines += [
+        f"| {_when(e)} | {summary_for(e, DEFAULT_FEED).replace('|', '¦')} |"
+        for e in shown
+        if matches(DEFAULT_FEED, e)
+    ]
     with open(path, "a", encoding="utf-8") as summary:
         summary.write("\n".join(lines) + "\n")
 
 
-INDEX_TEMPLATE = """<!doctype html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UFC 주요 경기 캘린더</title>
-<style>
-  :root {{ color-scheme: light dark; --fg: #1d1d1f; --muted: #6e6e73; --line: #d2d2d7;
-          --bg: #fff; --accent: #d20a0a; }}
-  @media (prefers-color-scheme: dark) {{
-    :root {{ --fg: #f5f5f7; --muted: #a1a1a6; --line: #38383a; --bg: #111; }}
-  }}
-  body {{ margin: 0 auto; max-width: 720px; padding: 24px 16px; color: var(--fg);
-         background: var(--bg);
-         font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; }}
-  h1 {{ font-size: 1.6rem; margin: 0 0 4px; }}
-  .muted {{ color: var(--muted); font-size: .9rem; }}
-  code {{ word-break: break-all; }}
-  a.button {{ display: inline-block; margin: 12px 0; padding: 10px 16px; border-radius: 8px;
-             background: var(--accent); color: #fff; text-decoration: none; font-weight: 600; }}
-  ul {{ padding-left: 0; list-style: none; }}
-  li {{ padding: 6px 0; border-bottom: 1px solid var(--line); }}
-  time {{ display: block; color: var(--muted); font-size: .85rem; }}
-</style>
-</head>
-<body>
-<h1>UFC 주요 경기 캘린더</h1>
-<p class="muted">한국 선수 출전 경기 · UFC 메인/코메인 이벤트 · 매일 자동 갱신
-(마지막 갱신 {updated})</p>
-<p>구독 URL: <code id="url">ufc.ics</code></p>
-<a class="button" id="subscribe" href="ufc.ics">Apple 캘린더에서 구독</a>
-<p class="muted">시간은 개별 경기가 아닌 해당 카드(메인/프릴림)의 시작 시간입니다.</p>
-<h2>예정된 경기</h2>
-<ul>
-{rows}
-</ul>
-<script>
-  const ics = new URL("ufc.ics", location.href);
-  document.getElementById("url").textContent = ics.href;
-  document.getElementById("subscribe").href = ics.href.replace(/^https?:/, "webcal:");
-</script>
-</body>
-</html>
-"""
+INDEX_TEMPLATE = (Path(__file__).with_name("index.html")).read_text(encoding="utf-8")

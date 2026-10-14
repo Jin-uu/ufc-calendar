@@ -111,7 +111,7 @@ def utc(*args: int) -> datetime:
     return datetime(*args, tzinfo=UTC)
 
 
-def fighter(name: str, fighter_id: int | None = None, country: str | None = "USA") -> Fighter:
+def fighter(name: str, fighter_id: int | None = None, country: str | None = "US") -> Fighter:
     return Fighter(name=name, fighter_id=fighter_id, country=country, country_source="test")
 
 

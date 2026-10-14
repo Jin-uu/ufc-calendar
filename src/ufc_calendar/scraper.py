@@ -25,6 +25,7 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
+from .countries import to_iso2
 from .models import Card, Event, EventKind, Fight, Fighter
 from .schedule import parse_timestamp
 
@@ -266,7 +267,7 @@ _SNAPSHOT_KEYS = {
     "event": ("EventId", "Name", "StartTime", "TimeZone", "Status", "Organization", "Location"),
     "fight": ("FightId", "FightOrder", "Status", "CardSegment", "CardSegmentStartTime",
               "WeightClass", "Accolades"),
-    "fighter": ("FighterId", "Name", "Born", "Corner"),
+    "fighter": ("FighterId", "Name", "Born", "Corner", "WeightClasses"),
 }  # fmt: skip
 
 
@@ -295,10 +296,14 @@ def parse_fighter(raw: Mapping[str, Any]) -> Fighter | None:
         return None
     born = (raw.get("Born") or {}).get("TriCode")
     fighter_id = raw.get("FighterId")
+    divisions = tuple(
+        str(w["Description"]) for w in raw.get("WeightClasses") or [] if w.get("Description")
+    )
     return Fighter(
         name=name,
         fighter_id=fighter_id if isinstance(fighter_id, int) else None,
         born_country_code=born.strip().upper() if isinstance(born, str) and born.strip() else None,
+        divisions=divisions,
     )
 
 
@@ -382,9 +387,9 @@ def apply_espn(
 ) -> dict[str, dict[str, str]]:
     """Attach nationalities and ESPN card times to the fights of ``events``.
 
-    A fighter's nationality comes from ESPN when ESPN lists them, otherwise from the value
-    ESPN gave on an earlier run (``cache``), otherwise from the FightMetric birthplace.
-    Returns the updated cache, limited to the fighters seen in ``events``.
+    A fighter's nationality (ISO alpha-2) comes from ESPN when ESPN lists them, otherwise from
+    the value ESPN gave on an earlier run (``cache``), otherwise from the FightMetric
+    birthplace. Returns the updated cache, limited to the fighters seen in ``events``.
     """
     new_cache: dict[str, dict[str, str]] = {}
     for event in events:
@@ -397,18 +402,16 @@ def apply_espn(
                 event.espn_start = event.espn_start or bout.event_start
                 espn_countries = {i: bout.competitors[j][1] for i, j in mapping.items()}
             for i, fighter in enumerate(fight.fighters):
-                espn = espn_countries.get(i)
+                espn = to_iso2(espn_countries.get(i))
+                born = to_iso2(fighter.born_country_code)
                 key = str(fighter.fighter_id) if fighter.fighter_id is not None else None
-                cached = cache.get(key, {}).get("country") if key else None
+                cached = to_iso2(cache.get(key, {}).get("country")) if key else None
                 if espn:
                     fighter.country, fighter.country_source = espn, "espn"
                 elif cached:
                     fighter.country, fighter.country_source = cached, "espn-cache"
-                elif fighter.born_country_code:
-                    fighter.country, fighter.country_source = (
-                        fighter.born_country_code,
-                        "fightmetric-born",
-                    )
+                elif born:
+                    fighter.country, fighter.country_source = born, "fightmetric-born"
                 if key and fighter.country_source in ("espn", "espn-cache"):
                     new_cache[key] = {"name": fighter.name, "country": fighter.country}
     return new_cache

@@ -1,41 +1,76 @@
-"""Decide which bouts go on the calendar: Korean fighters, main events and co-main events."""
+"""Which bouts appear in which feed.
+
+Every bout of the collected events becomes one master entry (see state.py). A feed is a
+combination of settings chosen on the website; each published .ics file is the master entries
+that match one feed:
+
+- country:  bouts with a fighter of this nationality (ISO alpha-2), or None
+- gender:   "all", "men" or "women"
+- headline: "none", "main", "comain" or "both" — main/co-main events of UFC events
+- side:     also take country bouts from Road to UFC and Dana White's Contender Series
+"""
 
 from __future__ import annotations
 
 import logging
 from collections.abc import Iterable
 from dataclasses import dataclass
+from typing import Protocol
 
-from .models import Card, Event, EventKind, Fight, Fighter
+from .models import Card, Event, EventKind, Fight
 
 log = logging.getLogger(__name__)
 
-# Country codes and names used for South Korea by FightMetric ("KOR") and ESPN ("South Korea").
-KOREA = {
-    "KOR",
-    "SKO",
-    "SOUTH KOREA",
-    "KOREA, SOUTH",
-    "KOREA REPUBLIC",
-    "REPUBLIC OF KOREA",
-    "KOREA, REPUBLIC OF",
-}
-
-
-def is_korean(fighter: Fighter) -> bool | None:
-    """True/False from the fighter's nationality; None when the nationality is unknown."""
-    if not fighter.country:
-        return None
-    return fighter.country.strip().upper() in KOREA
+GENDERS = ("all", "men", "women")
+HEADLINES = ("none", "main", "comain", "both")
+DEFAULT_COUNTRY = "KR"
 
 
 @dataclass(frozen=True)
-class Selection:
-    event: Event
-    fight: Fight
-    koreans: tuple[Fighter, ...]
+class Feed:
+    country: str | None = DEFAULT_COUNTRY
+    gender: str = "all"
+    headline: str = "both"
+    side: bool = True
+
+    @property
+    def slug(self) -> str:
+        side = "rtu" if self.country and self.side else "ufc"
+        return f"{(self.country or 'all').lower()}-{self.gender}-{self.headline}-{side}"
+
+
+DEFAULT_FEED = Feed()  # published as ufc.ics as well
+
+
+def all_feeds(countries: Iterable[str]) -> list[Feed]:
+    """Every combination offered on the website (a feed must select something)."""
+    feeds = [Feed(None, g, h, False) for g in GENDERS for h in HEADLINES if h != "none"]
+    for country in sorted(set(countries)):
+        feeds += [Feed(country, g, h, s) for g in GENDERS for h in HEADLINES for s in (True, False)]
+    return feeds
+
+
+class Matchable(Protocol):
+    kind: str
     main: bool
     co_main: bool
+    women: bool
+    countries: list[str]
+
+
+def matches(feed: Feed, bout: Matchable) -> bool:
+    if (feed.gender == "men" and bout.women) or (feed.gender == "women" and not bout.women):
+        return False
+    by_country = bool(
+        feed.country
+        and feed.country in bout.countries
+        and (bout.kind == EventKind.UFC or feed.side)
+    )
+    by_headline = bout.kind == EventKind.UFC and (
+        (feed.headline in ("main", "both") and bout.main)
+        or (feed.headline in ("comain", "both") and bout.co_main)
+    )
+    return by_country or by_headline
 
 
 def headline_flags(event: Event, fight: Fight) -> tuple[bool, bool]:
@@ -44,7 +79,7 @@ def headline_flags(event: Event, fight: Fight) -> tuple[bool, bool]:
     FightMetric orders a card from the top: bout 1 is the main event (last bout of the main
     card) and bout 2 the co-main. A position is only trusted when it is unique on the card.
     """
-    if fight.order not in (1, 2):
+    if event.kind is not EventKind.UFC or fight.order not in (1, 2):
         return False, False
     if sum(1 for f in event.fights if f.order == fight.order) != 1:
         log.warning(
@@ -71,29 +106,38 @@ def _on_main_card(event: Event, fight: Fight) -> bool:
     )
 
 
-def select_fights(events: Iterable[Event]) -> list[Selection]:
-    """Bouts with a Korean fighter, plus the main and co-main event of every UFC event.
+@dataclass(frozen=True)
+class Bout:
+    event: Event
+    fight: Fight
+    main: bool
+    co_main: bool
 
-    Road to UFC and Contender Series events only contribute bouts with Korean fighters.
-    """
-    selections = []
+    @property
+    def kind(self) -> str:
+        return self.event.kind
+
+    @property
+    def women(self) -> bool:
+        return self.fight.women
+
+    @property
+    def countries(self) -> list[str]:
+        return sorted({f.country for f in self.fight.fighters if f.country})
+
+
+def collect_bouts(events: Iterable[Event]) -> list[Bout]:
+    """All bouts of UFC, Road to UFC and Contender Series events, with headline flags."""
+    bouts = []
     for event in events:
         if event.kind is EventKind.OTHER:
             continue
         for fight in event.fights:
-            koreans = []
             for fighter in fight.fighters:
-                korean = is_korean(fighter)
-                if korean is None:
+                if fighter.country is None:
                     log.warning(
                         "%s: nationality unknown for %s (bout %s)",
                         event.name, fighter.name, fight.fight_id,
                     )  # fmt: skip
-                elif korean:
-                    koreans.append(fighter)
-            main = co_main = False
-            if event.kind is EventKind.UFC:
-                main, co_main = headline_flags(event, fight)
-            if koreans or main or co_main:
-                selections.append(Selection(event, fight, tuple(koreans), main, co_main))
-    return selections
+            bouts.append(Bout(event, fight, *headline_flags(event, fight)))
+    return bouts

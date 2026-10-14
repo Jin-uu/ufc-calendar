@@ -44,7 +44,21 @@ def test_end_to_end_with_fixtures(tmp_path):
     state = State.from_json((tmp_path / "state.json").read_text())
     assert (state.scan_from, state.max_event_id) == (1332, 1348)
     assert set(state.upcoming) == {1332, 1339, 1348}
-    assert "ufc.ics" in (tmp_path / "index.html").read_text()
+    assert (tmp_path / "feeds" / "kr-all-both-rtu.ics").read_bytes() == (
+        tmp_path / "ufc.ics"
+    ).read_bytes()
+    assert len(list((tmp_path / "feeds").glob("*.ics"))) == 9 + 24 * len(state.countries)
+    assert "KR" in state.countries and "CA" in state.countries
+    japan = Calendar.from_ical((tmp_path / "feeds" / "jp-all-none-ufc.ics").read_bytes())
+    assert [str(e["SUMMARY"]) for e in japan.walk("VEVENT")] == [
+        "🇯🇵 UFC | Asu Almabayev vs Kyoji Horiguchi"
+    ]
+    page = (tmp_path / "index.html").read_text()
+    data = json.loads(page.split('type="application/json">')[1].split("</script>")[0])
+    assert data["countries"][0]["code"] == "KR"
+    assert {"when", "matchup", "kind", "main", "coMain", "women", "countries"} <= set(
+        data["entries"][0]
+    )
 
 
 def test_second_run_uses_previous_state(tmp_path):
@@ -72,13 +86,13 @@ def test_espn_outage_falls_back_to_fightmetric_nationality(tmp_path):
 )
 def test_collection_failure_keeps_existing_calendar(monkeypatch, tmp_path, failure):
     assert run_cli(monkeypatch, fixture_session(1332), tmp_path) == 0
-    before = {p.name: p.read_bytes() for p in tmp_path.iterdir()}
+    before = {p: p.read_bytes() for p in tmp_path.rglob("*") if p.is_file()}
     broken = fixture_session(1332)
     broken.routes[fm_url(1340)] = failure  # an id the previous run never saw
 
     assert run_cli(monkeypatch, broken, tmp_path) == 1
 
-    assert {p.name: p.read_bytes() for p in tmp_path.iterdir()} == before
+    assert {p: p.read_bytes() for p in tmp_path.rglob("*") if p.is_file()} == before
 
 
 def test_known_event_failure_uses_previous_snapshot(tmp_path):

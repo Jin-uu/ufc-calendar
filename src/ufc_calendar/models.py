@@ -40,8 +40,9 @@ class Fighter:
     name: str
     fighter_id: int | None = None
     born_country_code: str | None = None  # FightMetric birthplace, e.g. "KOR"
-    country: str | None = None  # resolved nationality, e.g. "South Korea" or "KOR"
+    country: str | None = None  # resolved nationality, ISO alpha-2 (e.g. "KR")
     country_source: str | None = None  # "espn", "espn-cache" or "fightmetric-born"
+    divisions: tuple[str, ...] = ()  # the fighter's weight classes, e.g. ("Women's Flyweight",)
 
 
 @dataclass
@@ -55,6 +56,13 @@ class Fight:
     title: str | None = None  # e.g. "UFC Featherweight Title"
     status: str | None = None
     espn_start: datetime | None = None  # start of the bout's card according to ESPN (UTC)
+
+    @property
+    def women(self) -> bool:
+        """A women's bout: women's division, or (catchweight) fighters from women's divisions."""
+        if self.weight_class and self.weight_class.lower().startswith("women"):
+            return True
+        return any(d.lower().startswith("women") for f in self.fighters for d in f.divisions)
 
     @property
     def matchup(self) -> str:

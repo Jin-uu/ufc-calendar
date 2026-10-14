@@ -1,12 +1,14 @@
 """Calendar state across runs: stable UIDs, change tracking and cancellations.
 
-The state is published next to ufc.ics as state.json and read back by the next run, so the
+The state holds one master entry per bout; every feed is a filtered view of it (filter.py).
+It is published next to the calendars as state.json and read back by the next run, so the
 workflow never needs write access to the repository.
 """
 
 from __future__ import annotations
 
 import json
+import logging
 from collections import Counter
 from collections.abc import Iterable, Mapping
 from dataclasses import asdict, dataclass, field, fields, replace
@@ -15,10 +17,11 @@ from typing import Any
 
 from .schedule import KST
 
-STATE_VERSION = 1
+log = logging.getLogger(__name__)
+
+STATE_VERSION = 2
 CONFIRMED = "CONFIRMED"
 CANCELLED = "CANCELLED"
-CANCELLED_PREFIX = "❌ 취소 | "
 CANCELLED_NOTE = "이 경기는 취소되었거나 대진에서 빠졌습니다.\n\n"
 HISTORY = timedelta(days=365)  # how long finished bouts stay on the calendar
 
@@ -29,12 +32,17 @@ class StateError(Exception):
 
 @dataclass(frozen=True)
 class Draft:
-    """A calendar entry as computed from this run's data, before UID assignment."""
+    """A bout as computed from this run's data, before UID assignment."""
 
     event_id: int
     fight_id: int
     fighter_ids: tuple[int, ...]
-    summary: str
+    matchup: str
+    kind: str  # EventKind value
+    main: bool
+    co_main: bool
+    women: bool
+    countries: tuple[str, ...]  # ISO alpha-2 of the fighters
     description: str
     url: str
     start: str | None = None  # ISO datetime in KST
@@ -48,7 +56,12 @@ class Entry:
     event_id: int
     fight_ids: list[int]  # every FightMetric bout this entry has represented
     fighter_ids: list[int]
-    summary: str
+    matchup: str
+    kind: str
+    main: bool
+    co_main: bool
+    women: bool
+    countries: list[str]
     description: str
     url: str
     start: str | None = None
@@ -57,6 +70,7 @@ class Entry:
     status: str = CONFIRMED
     sequence: int = 0
     last_modified: str = ""  # ISO datetime in UTC
+    replaced_by: str | None = None  # set on the cancelled copy kept after a fighter change
 
     @property
     def begins(self) -> datetime:
@@ -68,14 +82,9 @@ class Entry:
 
     def content(self) -> tuple:
         return (
-            self.summary,
-            self.description,
-            self.url,
-            self.start,
-            self.end,
-            self.day,
-            self.status,
-        )
+            self.matchup, self.kind, self.main, self.co_main, self.women, tuple(self.countries),
+            self.description, self.url, self.start, self.end, self.day, self.status,
+        )  # fmt: skip
 
     @classmethod
     def from_dict(cls, data: Mapping[str, Any]) -> Entry:
@@ -90,16 +99,19 @@ def reconcile(
     now: datetime,
     cutoff: datetime,
 ) -> tuple[list[Entry], Counter]:
-    """Merge this run's drafts into the previous entries.
+    """Merge this run's drafts into the previous master entries.
 
     ``cards`` maps every event in this run's data to {fight id: fighter ids}. Entries starting
     before ``cutoff`` are history and kept as they are. A previous entry without a draft is
-    dropped when its bout is still on the card (it no longer qualifies, e.g. it is not the
-    co-main any more) and marked cancelled when the bout or its fighters are gone.
+    dropped when its bout is still on a card (it is outside the window now) and marked
+    cancelled when the bout is gone. When a fighter leaves a bout, a cancelled copy of the old
+    version is kept (``replaced_by``) so feeds that only matched because of that fighter show
+    the cancellation.
     """
     old = {e.uid: e for e in previous}
     stamp = now.astimezone(UTC).isoformat(timespec="seconds")
-    by_fight = {fight_id: uid for uid, e in old.items() for fight_id in e.fight_ids}
+    live = {uid: e for uid, e in old.items() if not e.replaced_by}
+    by_fight = {fight_id: uid for uid, e in live.items() for fight_id in e.fight_ids}
     result: dict[str, Entry] = {}
     changes: Counter = Counter()
 
@@ -107,11 +119,21 @@ def reconcile(
         card = cards.get(entry.event_id)
         return card is not None and not any(f in card for f in entry.fight_ids)
 
+    def merge(uid: str, draft: Draft) -> None:
+        before = old.get(uid)
+        result[uid] = _merge(before, uid, draft, stamp, changes)
+        if before and before.status == CONFIRMED:
+            left = sorted(set(before.fighter_ids) - set(draft.fighter_ids))
+            if left:
+                ghost_uid = uid.replace("@", "-x" + "-".join(map(str, left)) + "@", 1)
+                result[ghost_uid] = _cancelled(before, stamp, uid=ghost_uid, replaced_by=uid)
+                changes["replaced"] += 1
+
     unmatched = []
     for draft in drafts:
         uid = by_fight.get(draft.fight_id)
         if uid and uid not in result:
-            result[uid] = _merge(old[uid], uid, draft, stamp, changes)
+            merge(uid, draft)
         else:
             unmatched.append(draft)
     for draft in unmatched:
@@ -120,7 +142,7 @@ def reconcile(
         uid = next(
             (
                 uid
-                for uid, e in old.items()
+                for uid, e in live.items()
                 if uid not in result
                 and e.event_id == draft.event_id
                 and vanished(e)
@@ -129,7 +151,7 @@ def reconcile(
             None,
         )
         if uid:
-            result[uid] = _merge(old[uid], uid, draft, stamp, changes)
+            merge(uid, draft)
         else:
             uid = f"fight-{draft.fight_id}@ufc-calendar"
             result[uid] = _merge(None, uid, draft, stamp, changes)
@@ -143,26 +165,27 @@ def reconcile(
             else:
                 changes["expired"] += 1
             continue
-        card = cards.get(entry.event_id)
-        still_scheduled = card is not None and any(
-            f in card and set(entry.fighter_ids) <= card[f] for f in entry.fight_ids
-        )
-        if still_scheduled:
-            changes["removed"] += 1
-        elif entry.status == CANCELLED:
+        if entry.replaced_by or entry.status == CANCELLED:
             result[uid] = entry
-            changes["unchanged"] += 1
+            continue
+        card = cards.get(entry.event_id)
+        if card is not None and any(f in card for f in entry.fight_ids):
+            changes["removed"] += 1  # still scheduled, but outside the collection window
         else:
-            result[uid] = replace(
-                entry,
-                status=CANCELLED,
-                summary=CANCELLED_PREFIX + entry.summary,
-                description=CANCELLED_NOTE + entry.description,
-                sequence=entry.sequence + 1,
-                last_modified=stamp,
-            )
+            result[uid] = _cancelled(entry, stamp)
             changes["cancelled"] += 1
     return sorted(result.values(), key=lambda e: (e.begins, e.uid)), changes
+
+
+def _cancelled(entry: Entry, stamp: str, **overrides: Any) -> Entry:
+    return replace(
+        entry,
+        status=CANCELLED,
+        description=CANCELLED_NOTE + entry.description,
+        sequence=entry.sequence + 1,
+        last_modified=stamp,
+        **overrides,
+    )
 
 
 def _merge(previous: Entry | None, uid: str, draft: Draft, stamp: str, changes: Counter) -> Entry:
@@ -174,7 +197,12 @@ def _merge(previous: Entry | None, uid: str, draft: Draft, stamp: str, changes: 
         event_id=draft.event_id,
         fight_ids=fight_ids,
         fighter_ids=list(draft.fighter_ids),
-        summary=draft.summary,
+        matchup=draft.matchup,
+        kind=draft.kind,
+        main=draft.main,
+        co_main=draft.co_main,
+        women=draft.women,
+        countries=list(draft.countries),
         description=draft.description,
         url=draft.url,
         start=draft.start,
@@ -200,6 +228,7 @@ class State:
     events: dict[int, dict] = field(default_factory=dict)  # snapshots of upcoming events
     upcoming: dict[int, str] = field(default_factory=dict)  # event id -> start (ISO, UTC)
     nationalities: dict[str, dict[str, str]] = field(default_factory=dict)  # ESPN, by fighter id
+    countries: list[str] = field(default_factory=list)  # every country that has had a feed
     scan_from: int | None = None
     max_event_id: int | None = None
     generated_at: str | None = None
@@ -212,16 +241,22 @@ class State:
     def from_json(cls, text: str) -> State:
         try:
             data = json.loads(text)
-            if data.get("version") != STATE_VERSION:
-                raise StateError(f"unsupported state version {data.get('version')!r}")
-            entries = [Entry.from_dict(e) for e in data.get("entries", [])]
-            for entry in entries:
-                entry.begins  # noqa: B018 - validates start/day
+            version = data.get("version")
+            if version not in (1, STATE_VERSION):
+                raise StateError(f"unsupported state version {version!r}")
+            entries = []
+            if version == STATE_VERSION:
+                entries = [Entry.from_dict(e) for e in data.get("entries", [])]
+                for entry in entries:
+                    entry.begins  # noqa: B018 - validates start/day
+            else:
+                log.info("Upgrading version 1 state: entries are rebuilt (UIDs stay the same)")
             return cls(
                 entries=entries,
                 events={int(k): v for k, v in data.get("events", {}).items()},
                 upcoming={int(k): v for k, v in data.get("upcoming", {}).items()},
                 nationalities=dict(data.get("nationalities", {})),
+                countries=list(data.get("countries", [])),
                 scan_from=data.get("scan_from"),
                 max_event_id=data.get("max_event_id"),
                 generated_at=data.get("generated_at"),
