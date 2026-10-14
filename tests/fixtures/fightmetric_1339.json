@@ -1,0 +1,683 @@
+{
+ "LiveEventDetail": {
+  "EventId": 1339,
+  "Name": "UFC Fight Night: Moicano vs. Nolan",
+  "StartTime": "2026-10-31T21:00Z",
+  "TimeZone": "GMT-07:00",
+  "Status": "Upcoming",
+  "Organization": {
+   "OrganizationId": 1,
+   "Name": "Ultimate Fighting Championship"
+  },
+  "Location": {
+   "City": "Las Vegas",
+   "State": "Nevada",
+   "Country": "USA",
+   "TriCode": "USA",
+   "VenueId": 316,
+   "Venue": "Meta Apex"
+  },
+  "FightCard": [
+   {
+    "FightId": 13133,
+    "FightOrder": 1,
+    "Status": "Upcoming",
+    "CardSegment": "Main",
+    "CardSegmentStartTime": "2026-11-01T00:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 5,
+     "CatchWeight": null,
+     "Weight": "146-155",
+     "Description": "Lightweight",
+     "Abbreviation": "LW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 2375,
+      "Name": {
+       "FirstName": "Renato",
+       "LastName": "Moicano",
+       "NickName": null
+      },
+      "Born": {
+       "City": "Brasilia",
+       "State": "Distrito Federal",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "FightingOutOf": {
+       "City": "Brasilia",
+       "State": "Distrito Federal",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4024,
+      "Name": {
+       "FirstName": "Tom",
+       "LastName": "Nolan",
+       "NickName": "Big Train"
+      },
+      "Born": {
+       "City": "Toowoomba",
+       "State": "Queensland",
+       "Country": "Australia",
+       "TriCode": "AUS"
+      },
+      "FightingOutOf": {
+       "City": "Brisbane",
+       "State": "Queensland",
+       "Country": "Australia",
+       "TriCode": "AUS"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13096,
+    "FightOrder": 2,
+    "Status": "Upcoming",
+    "CardSegment": "Prelims1",
+    "CardSegmentStartTime": "2026-10-31T21:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 3,
+     "CatchWeight": null,
+     "Weight": "171-185",
+     "Description": "Middleweight",
+     "Abbreviation": "MW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 4306,
+      "Name": {
+       "FirstName": "Nick",
+       "LastName": "Klein",
+       "NickName": "Blue Collar"
+      },
+      "Born": {
+       "City": "Plymouth",
+       "State": "Wisconsin",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Milwaukee",
+       "State": "Wisconsin",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4580,
+      "Name": {
+       "FirstName": "Joe",
+       "LastName": "Kropschot",
+       "NickName": "The Land Animal"
+      },
+      "Born": {
+       "City": "San Ramon",
+       "State": "California",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": null,
+       "State": "California",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13117,
+    "FightOrder": 3,
+    "Status": "Upcoming",
+    "CardSegment": "Prelims1",
+    "CardSegmentStartTime": "2026-10-31T21:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 35,
+     "CatchWeight": null,
+     "Weight": "116-125",
+     "Description": "Women's Flyweight",
+     "Abbreviation": "WFLW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 4659,
+      "Name": {
+       "FirstName": "Lucia",
+       "LastName": "Szabova",
+       "NickName": "Silent Killer"
+      },
+      "Born": {
+       "City": "Bratislava",
+       "State": "Bratislava",
+       "Country": "Slovakia",
+       "TriCode": "SVK"
+      },
+      "FightingOutOf": {
+       "City": "Bratislava",
+       "State": "Bratislava",
+       "Country": "Slovakia",
+       "TriCode": "SVK"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 3882,
+      "Name": {
+       "FirstName": "Tainara",
+       "LastName": "Lisboa",
+       "NickName": "Thai Panther"
+      },
+      "Born": {
+       "City": "Santos",
+       "State": "Sao Paulo",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "FightingOutOf": {
+       "City": "Santos",
+       "State": "Sao Paulo",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13172,
+    "FightOrder": 4,
+    "Status": "Upcoming",
+    "CardSegment": null,
+    "CardSegmentStartTime": null,
+    "CardSegmentBroadcaster": null,
+    "WeightClass": {
+     "WeightClassId": 4,
+     "CatchWeight": null,
+     "Weight": "156-170",
+     "Description": "Welterweight",
+     "Abbreviation": "WW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 2739,
+      "Name": {
+       "FirstName": "Randy",
+       "LastName": "Brown",
+       "NickName": "Rudeboy"
+      },
+      "Born": {
+       "City": "Spanish Town",
+       "State": null,
+       "Country": "Jamaica",
+       "TriCode": "JAM"
+      },
+      "FightingOutOf": {
+       "City": "Spanish Town",
+       "State": null,
+       "Country": "Jamaica",
+       "TriCode": "JAM"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4309,
+      "Name": {
+       "FirstName": "Carlos",
+       "LastName": "Leal",
+       "NickName": "The Lion"
+      },
+      "Born": {
+       "City": "Curitiba",
+       "State": "Parana",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "FightingOutOf": {
+       "City": "Curitiba",
+       "State": "Parana",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13173,
+    "FightOrder": 5,
+    "Status": "Upcoming",
+    "CardSegment": null,
+    "CardSegmentStartTime": null,
+    "CardSegmentBroadcaster": null,
+    "WeightClass": {
+     "WeightClassId": 25,
+     "CatchWeight": null,
+     "Weight": "126-135",
+     "Description": "Women's Bantamweight",
+     "Abbreviation": "WBW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 3053,
+      "Name": {
+       "FirstName": "Yana",
+       "LastName": "Santos",
+       "NickName": null
+      },
+      "Born": {
+       "City": "Murmansk",
+       "State": "Murmansk",
+       "Country": "Russia",
+       "TriCode": "RUS"
+      },
+      "FightingOutOf": {
+       "City": "Saint Petersburg",
+       "State": "Saint Petersburg",
+       "Country": "Russia",
+       "TriCode": "RUS"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4080,
+      "Name": {
+       "FirstName": "Luana",
+       "LastName": "Santos",
+       "NickName": null
+      },
+      "Born": {
+       "City": "Sao Paulo",
+       "State": "Sao Paulo",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "FightingOutOf": {
+       "City": "Sao Paulo",
+       "State": "Sao Paulo",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13174,
+    "FightOrder": 6,
+    "Status": "Upcoming",
+    "CardSegment": null,
+    "CardSegmentStartTime": null,
+    "CardSegmentBroadcaster": null,
+    "WeightClass": {
+     "WeightClassId": 32,
+     "CatchWeight": null,
+     "Weight": "106-115",
+     "Description": "Women's Strawweight",
+     "Abbreviation": "WSW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 4079,
+      "Name": {
+       "FirstName": "Talita",
+       "LastName": "Alencar",
+       "NickName": "Problem Child"
+      },
+      "Born": {
+       "City": "Carutapera",
+       "State": "Maranhao",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "FightingOutOf": {
+       "City": "Carutapera",
+       "State": "Maranhao",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 3692,
+      "Name": {
+       "FirstName": "Piera",
+       "LastName": "Rodriguez",
+       "NickName": "La Fiera"
+      },
+      "Born": {
+       "City": "Maracaibo",
+       "State": "Zulia",
+       "Country": "Venezuela",
+       "TriCode": "VEN"
+      },
+      "FightingOutOf": {
+       "City": "Maracaibo",
+       "State": "Zulia",
+       "Country": "Venezuela",
+       "TriCode": "VEN"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13175,
+    "FightOrder": 7,
+    "Status": "Upcoming",
+    "CardSegment": null,
+    "CardSegmentStartTime": null,
+    "CardSegmentBroadcaster": null,
+    "WeightClass": {
+     "WeightClassId": 4,
+     "CatchWeight": null,
+     "Weight": "156-170",
+     "Description": "Welterweight",
+     "Abbreviation": "WW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 4457,
+      "Name": {
+       "FirstName": "Rodrigo",
+       "LastName": "Sezinando",
+       "NickName": null
+      },
+      "Born": {
+       "City": "Rio de Janeiro",
+       "State": "Rio de Janeiro",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "FightingOutOf": {
+       "City": "Vancouver",
+       "State": "British Columbia",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4549,
+      "Name": {
+       "FirstName": "Theodor",
+       "LastName": "Berggren",
+       "NickName": "Simba"
+      },
+      "Born": {
+       "City": "Umea",
+       "State": null,
+       "Country": "Sweden",
+       "TriCode": "SWE"
+      },
+      "FightingOutOf": {
+       "City": "Umea",
+       "State": null,
+       "Country": "Sweden",
+       "TriCode": "SWE"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13176,
+    "FightOrder": 8,
+    "Status": "Upcoming",
+    "CardSegment": null,
+    "CardSegmentStartTime": null,
+    "CardSegmentBroadcaster": null,
+    "WeightClass": {
+     "WeightClassId": 4,
+     "CatchWeight": null,
+     "Weight": "156-170",
+     "Description": "Welterweight",
+     "Abbreviation": "WW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 4417,
+      "Name": {
+       "FirstName": "Jean-Paul",
+       "LastName": "Lebosnoyani",
+       "NickName": "Mufasa"
+      },
+      "Born": {
+       "City": "Hermosa Beach",
+       "State": "California",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Las Vegas",
+       "State": "Nevada",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4540,
+      "Name": {
+       "FirstName": "Farman",
+       "LastName": "Hasanov",
+       "NickName": "The Lion"
+      },
+      "Born": {
+       "City": "Nakhchivan",
+       "State": "Nakhchivan",
+       "Country": "Azerbaijan",
+       "TriCode": "AZE"
+      },
+      "FightingOutOf": {
+       "City": "Nakhchivan",
+       "State": "Nakhchivan",
+       "Country": "Azerbaijan",
+       "TriCode": "AZE"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13177,
+    "FightOrder": 9,
+    "Status": "Upcoming",
+    "CardSegment": null,
+    "CardSegmentStartTime": null,
+    "CardSegmentBroadcaster": null,
+    "WeightClass": {
+     "WeightClassId": 3,
+     "CatchWeight": null,
+     "Weight": "171-185",
+     "Description": "Middleweight",
+     "Abbreviation": "MW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 4315,
+      "Name": {
+       "FirstName": "Azamat",
+       "LastName": "Bekoev",
+       "NickName": "Iron"
+      },
+      "Born": {
+       "City": "Vladikavkaz",
+       "State": "North Ossetia-Alania",
+       "Country": "Russia",
+       "TriCode": "RUS"
+      },
+      "FightingOutOf": {
+       "City": "Vladikavkaz",
+       "State": "North Ossetia-Alania",
+       "Country": "Russia",
+       "TriCode": "RUS"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 3749,
+      "Name": {
+       "FirstName": "Andre",
+       "LastName": "Petroski",
+       "NickName": null
+      },
+      "Born": {
+       "City": "Chester",
+       "State": "Pennsylvania",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Philadelphia",
+       "State": "Pennsylvania",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13178,
+    "FightOrder": 10,
+    "Status": "Upcoming",
+    "CardSegment": null,
+    "CardSegmentStartTime": null,
+    "CardSegmentBroadcaster": null,
+    "WeightClass": {
+     "WeightClassId": 6,
+     "CatchWeight": null,
+     "Weight": "136-145",
+     "Description": "Featherweight",
+     "Abbreviation": "FTW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 2728,
+      "Name": {
+       "FirstName": "Julian",
+       "LastName": "Erosa",
+       "NickName": "Juicy J"
+      },
+      "Born": {
+       "City": "Seattle",
+       "State": "Washington",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Yakima",
+       "State": "Washington",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 3815,
+      "Name": {
+       "FirstName": "JeongYeong",
+       "LastName": "Lee",
+       "NickName": "Korean Tiger"
+      },
+      "Born": {
+       "City": "Daegu",
+       "State": "Yeongnam",
+       "Country": "South Korea",
+       "TriCode": "KOR"
+      },
+      "FightingOutOf": {
+       "City": "Daegu",
+       "State": "Yeongnam",
+       "Country": "South Korea",
+       "TriCode": "KOR"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13179,
+    "FightOrder": 11,
+    "Status": "Upcoming",
+    "CardSegment": null,
+    "CardSegmentStartTime": null,
+    "CardSegmentBroadcaster": null,
+    "WeightClass": {
+     "WeightClassId": 6,
+     "CatchWeight": null,
+     "Weight": "136-145",
+     "Description": "Featherweight",
+     "Abbreviation": "FTW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 3847,
+      "Name": {
+       "FirstName": "Francis",
+       "LastName": "Marshall",
+       "NickName": "Fire"
+      },
+      "Born": {
+       "City": "Manasquan",
+       "State": "New Jersey",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Coconut Creek",
+       "State": "Florida",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 3959,
+      "Name": {
+       "FirstName": "Gaston",
+       "LastName": "Bolanos",
+       "NickName": "The Dreamkiller"
+      },
+      "Born": {
+       "City": "Lima",
+       "State": null,
+       "Country": "Peru",
+       "TriCode": "PER"
+      },
+      "FightingOutOf": {
+       "City": "Lima",
+       "State": null,
+       "Country": "Peru",
+       "TriCode": "PER"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   }
+  ]
+ }
+}

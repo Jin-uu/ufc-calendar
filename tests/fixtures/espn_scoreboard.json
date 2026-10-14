@@ -1,0 +1,1378 @@
+{
+ "events": [
+  {
+   "id": "600060773",
+   "name": "UFC Fight Night: Buckley vs. Malott",
+   "date": "2026-10-17T21:00Z",
+   "competitions": [
+    {
+     "id": "401919643",
+     "date": "2026-10-17T21:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "970",
+      "abbreviation": "Bantamweight"
+     },
+     "competitors": [
+      {
+       "id": "5044361",
+       "order": 2,
+       "athlete": {
+        "fullName": "SuYoung You",
+        "displayName": "SuYoung You",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/sko.png",
+         "alt": "South Korea",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5282412",
+       "order": 1,
+       "athlete": {
+        "fullName": "Cody Chovancek",
+        "displayName": "Cody Chovancek",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/can.png",
+         "alt": "Canada",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401908373",
+     "date": "2026-10-17T21:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "1003",
+      "abbreviation": "W Bantamweight"
+     },
+     "competitors": [
+      {
+       "id": "4319785",
+       "order": 2,
+       "athlete": {
+        "fullName": "Chelsea Chandler",
+        "displayName": "Chelsea Chandler",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "4947922",
+       "order": 1,
+       "athlete": {
+        "fullName": "Melissa Croden",
+        "displayName": "Melissa Croden",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/can.png",
+         "alt": "Canada",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401914039",
+     "date": "2026-10-17T21:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "970",
+      "abbreviation": "Bantamweight"
+     },
+     "competitors": [
+      {
+       "id": "4816062",
+       "order": 1,
+       "athlete": {
+        "fullName": "Chad Anheliger",
+        "displayName": "Chad Anheliger",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/can.png",
+         "alt": "Canada",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5119740",
+       "order": 2,
+       "athlete": {
+        "fullName": "Steven Koslow",
+        "displayName": "Steven Koslow",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401929675",
+     "date": "2026-10-17T21:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "1007",
+      "abbreviation": "W Flyweight"
+     },
+     "competitors": [
+      {
+       "id": "4026490",
+       "order": 1,
+       "athlete": {
+        "fullName": "Katlyn Cerminara",
+        "displayName": "Katlyn Cerminara",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5130806",
+       "order": 2,
+       "athlete": {
+        "fullName": "Mackenzie Stiller",
+        "displayName": "Mackenzie Stiller",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401929676",
+     "date": "2026-10-17T21:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "982",
+      "abbreviation": "Heavyweight"
+     },
+     "competitors": [
+      {
+       "id": "5405986",
+       "order": 1,
+       "athlete": {
+        "fullName": "Javad Mahjoub",
+        "displayName": "Javad Mahjoub",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/can.png",
+         "alt": "Canada",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5454260",
+       "order": 2,
+       "athlete": {
+        "fullName": "Joel Faglier",
+        "displayName": "Joel Faglier",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401911807",
+     "date": "2026-10-17T21:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "972",
+      "abbreviation": "Middleweight"
+     },
+     "competitors": [
+      {
+       "id": "4807973",
+       "order": 1,
+       "athlete": {
+        "fullName": "Julien LeBlanc",
+        "displayName": "Julien LeBlanc",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/can.png",
+         "alt": "Canada",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5296770",
+       "order": 2,
+       "athlete": {
+        "fullName": "Nick Galanti",
+        "displayName": "Nick Galanti",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401908371",
+     "date": "2026-10-17T21:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "982",
+      "abbreviation": "Heavyweight"
+     },
+     "competitors": [
+      {
+       "id": "4232775",
+       "order": 1,
+       "athlete": {
+        "fullName": "Tanner Boser",
+        "displayName": "Tanner Boser",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/can.png",
+         "alt": "Canada",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5145497",
+       "order": 2,
+       "athlete": {
+        "fullName": "Jhonata Diniz",
+        "displayName": "Jhonata Diniz",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
+         "alt": "Brazil",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401905374",
+     "date": "2026-10-18T00:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "986",
+      "abbreviation": "Lightweight"
+     },
+     "competitors": [
+      {
+       "id": "3821549",
+       "order": 2,
+       "athlete": {
+        "fullName": "Nate Landwehr",
+        "displayName": "Nate Landwehr",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "4063786",
+       "order": 1,
+       "athlete": {
+        "fullName": "Mandel Nallo",
+        "displayName": "Mandel Nallo",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/can.png",
+         "alt": "Canada",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401909783",
+     "date": "2026-10-18T00:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "970",
+      "abbreviation": "Bantamweight"
+     },
+     "competitors": [
+      {
+       "id": "4877916",
+       "order": 1,
+       "athlete": {
+        "fullName": "Louis Jourdain",
+        "displayName": "Louis Jourdain",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/can.png",
+         "alt": "Canada",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5123311",
+       "order": 2,
+       "athlete": {
+        "fullName": "Timmy Cuamba",
+        "displayName": "Timmy Cuamba",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401908372",
+     "date": "2026-10-18T00:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "972",
+      "abbreviation": "Middleweight"
+     },
+     "competitors": [
+      {
+       "id": "4329444",
+       "order": 2,
+       "athlete": {
+        "fullName": "Kyle Daukaus",
+        "displayName": "Kyle Daukaus",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "4415883",
+       "order": 1,
+       "athlete": {
+        "fullName": "Marc-Andre Barriault",
+        "displayName": "Marc-Andre Barriault",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/can.png",
+         "alt": "Canada",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401923630",
+     "date": "2026-10-18T00:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "986",
+      "abbreviation": "Lightweight"
+     },
+     "competitors": [
+      {
+       "id": "4408436",
+       "order": 1,
+       "athlete": {
+        "fullName": "Kyle Nelson",
+        "displayName": "Kyle Nelson",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/can.png",
+         "alt": "Canada",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5180489",
+       "order": 2,
+       "athlete": {
+        "fullName": "Cristian Pérez",
+        "displayName": "Cristian Pérez",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/mex.png",
+         "alt": "Mexico",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401897729",
+     "date": "2026-10-18T00:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "1007",
+      "abbreviation": "W Flyweight"
+     },
+     "competitors": [
+      {
+       "id": "4350796",
+       "order": 1,
+       "athlete": {
+        "fullName": "Erin Blanchfield",
+        "displayName": "Erin Blanchfield",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "4835135",
+       "order": 2,
+       "athlete": {
+        "fullName": "Jasmine Jasudavicius",
+        "displayName": "Jasmine Jasudavicius",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/can.png",
+         "alt": "Canada",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401897388",
+     "date": "2026-10-18T00:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "969",
+      "abbreviation": "Welterweight"
+     },
+     "competitors": [
+      {
+       "id": "3165120",
+       "order": 2,
+       "athlete": {
+        "fullName": "Mike Malott",
+        "displayName": "Mike Malott",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/can.png",
+         "alt": "Canada",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "4024714",
+       "order": 1,
+       "athlete": {
+        "fullName": "Joaquin Buckley",
+        "displayName": "Joaquin Buckley",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "600061420",
+   "name": "UFC Fight Night: Moicano vs. Nolan",
+   "date": "2026-10-31T21:00Z",
+   "competitions": [
+    {
+     "id": "401928110",
+     "date": "2026-10-31T21:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "999",
+      "abbreviation": "Featherweight"
+     },
+     "competitors": [
+      {
+       "id": "4393818",
+       "order": 2,
+       "athlete": {
+        "fullName": "Gaston Bolaños",
+        "displayName": "Gaston Bolaños",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/per.png",
+         "alt": "Peru",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5060394",
+       "order": 1,
+       "athlete": {
+        "fullName": "Francis Marshall",
+        "displayName": "Francis Marshall",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401928109",
+     "date": "2026-10-31T21:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "999",
+      "abbreviation": "Featherweight"
+     },
+     "competitors": [
+      {
+       "id": "3955577",
+       "order": 1,
+       "athlete": {
+        "fullName": "Julian Erosa",
+        "displayName": "Julian Erosa",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5068724",
+       "order": 2,
+       "athlete": {
+        "fullName": "JeongYeong Lee",
+        "displayName": "JeongYeong Lee",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/sko.png",
+         "alt": "South Korea",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401928108",
+     "date": "2026-10-31T21:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "972",
+      "abbreviation": "Middleweight"
+     },
+     "competitors": [
+      {
+       "id": "4697476",
+       "order": 2,
+       "athlete": {
+        "fullName": "Andre Petroski",
+        "displayName": "Andre Petroski",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5123963",
+       "order": 1,
+       "athlete": {
+        "fullName": "Azamat Bekoev",
+        "displayName": "Azamat Bekoev",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/rus.png",
+         "alt": "Russia",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401928107",
+     "date": "2026-10-31T21:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "969",
+      "abbreviation": "Welterweight"
+     },
+     "competitors": [
+      {
+       "id": "4629138",
+       "order": 1,
+       "athlete": {
+        "fullName": "Jean-Paul Lebosnoyani",
+        "displayName": "Jean-Paul Lebosnoyani",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5350562",
+       "order": 2,
+       "athlete": {
+        "fullName": "Farman Hasanov",
+        "displayName": "Farman Hasanov",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/aze.png",
+         "alt": "Azerbaijan",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401928106",
+     "date": "2026-10-31T21:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "969",
+      "abbreviation": "Welterweight"
+     },
+     "competitors": [
+      {
+       "id": "5085010",
+       "order": 2,
+       "athlete": {
+        "fullName": "Theodor Berggren",
+        "displayName": "Theodor Berggren",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/swe.png",
+         "alt": "Sweden",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5289853",
+       "order": 1,
+       "athlete": {
+        "fullName": "Rodrigo Sezinando",
+        "displayName": "Rodrigo Sezinando",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
+         "alt": "Brazil",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401928105",
+     "date": "2026-10-31T21:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "1006",
+      "abbreviation": "W Strawweight"
+     },
+     "competitors": [
+      {
+       "id": "4816066",
+       "order": 2,
+       "athlete": {
+        "fullName": "Piera Rodriguez",
+        "displayName": "Piera Rodriguez",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/ven.png",
+         "alt": "Venezuela",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5139556",
+       "order": 1,
+       "athlete": {
+        "fullName": "Talita Alencar",
+        "displayName": "Talita Alencar",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
+         "alt": "Brazil",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401928104",
+     "date": "2026-11-01T00:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "1003",
+      "abbreviation": "W Bantamweight"
+     },
+     "competitors": [
+      {
+       "id": "3154898",
+       "order": 1,
+       "athlete": {
+        "fullName": "Yana Santos",
+        "displayName": "Yana Santos",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/rus.png",
+         "alt": "Russia",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5110469",
+       "order": 2,
+       "athlete": {
+        "fullName": "Luana Santos",
+        "displayName": "Luana Santos",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
+         "alt": "Brazil",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401928103",
+     "date": "2026-11-01T00:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "969",
+      "abbreviation": "Welterweight"
+     },
+     "competitors": [
+      {
+       "id": "3146349",
+       "order": 2,
+       "athlete": {
+        "fullName": "Carlos Leal",
+        "displayName": "Carlos Leal",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
+         "alt": "Brazil",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "3960071",
+       "order": 1,
+       "athlete": {
+        "fullName": "Randy Brown",
+        "displayName": "Randy Brown",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/jam.png",
+         "alt": "Jamaica",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401914105",
+     "date": "2026-10-31T21:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "1007",
+      "abbreviation": "W Flyweight"
+     },
+     "competitors": [
+      {
+       "id": "4418809",
+       "order": 2,
+       "athlete": {
+        "fullName": "Tainara Lisboa",
+        "displayName": "Tainara Lisboa",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
+         "alt": "Brazil",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5130185",
+       "order": 1,
+       "athlete": {
+        "fullName": "Lucia Szabová",
+        "displayName": "Lucia Szabová",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/svk.png",
+         "alt": "Slovakia",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401914106",
+     "date": "2026-10-31T21:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "972",
+      "abbreviation": "Middleweight"
+     },
+     "competitors": [
+      {
+       "id": "4687604",
+       "order": 2,
+       "athlete": {
+        "fullName": "Joe Kropschot",
+        "displayName": "Joe Kropschot",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5134399",
+       "order": 1,
+       "athlete": {
+        "fullName": "Nick Klein",
+        "displayName": "Nick Klein",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401921310",
+     "date": "2026-11-01T00:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "986",
+      "abbreviation": "Lightweight"
+     },
+     "competitors": [
+      {
+       "id": "3028863",
+       "order": 1,
+       "athlete": {
+        "fullName": "Renato Moicano",
+        "displayName": "Renato Moicano",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
+         "alt": "Brazil",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5144007",
+       "order": 2,
+       "athlete": {
+        "fullName": "Tom Nolan",
+        "displayName": "Tom Nolan",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/aus.png",
+         "alt": "Australia",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "600061665",
+   "name": "UFC Fight Night: Procházka vs. Stirling",
+   "date": "2026-11-21T15:00Z",
+   "competitions": [
+    {
+     "id": "401927856",
+     "date": "2026-11-21T15:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "956",
+      "abbreviation": "Flyweight"
+     },
+     "competitors": [
+      {
+       "id": "4684848",
+       "order": 1,
+       "athlete": {
+        "fullName": "Amir Albazi",
+        "displayName": "Amir Albazi",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/irq.png",
+         "alt": "Iraq",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5074121",
+       "order": 2,
+       "athlete": {
+        "fullName": "Alessandro Costa",
+        "displayName": "Alessandro Costa",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
+         "alt": "Brazil",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401927855",
+     "date": "2026-11-21T15:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "956",
+      "abbreviation": "Flyweight"
+     },
+     "competitors": [
+      {
+       "id": "2613374",
+       "order": 2,
+       "athlete": {
+        "fullName": "Kyoji Horiguchi",
+        "displayName": "Kyoji Horiguchi",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/jpn.png",
+         "alt": "Japan",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "4294926",
+       "order": 1,
+       "athlete": {
+        "fullName": "Asu Almabayev",
+        "displayName": "Asu Almabayev",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/kaz.png",
+         "alt": "Kazakhstan",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401927854",
+     "date": "2026-11-21T15:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "970",
+      "abbreviation": "Bantamweight"
+     },
+     "competitors": [
+      {
+       "id": "5185662",
+       "order": 1,
+       "athlete": {
+        "fullName": "Aleksandre Topuria",
+        "displayName": "Aleksandre Topuria",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/geo.png",
+         "alt": "Georgia",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5307799",
+       "order": 2,
+       "athlete": {
+        "fullName": "Santiago Luna",
+        "displayName": "Santiago Luna",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/mex.png",
+         "alt": "Mexico",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401927853",
+     "date": "2026-11-21T15:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "969",
+      "abbreviation": "Welterweight"
+     },
+     "competitors": [
+      {
+       "id": "3089915",
+       "order": 1,
+       "athlete": {
+        "fullName": "Jake Matthews",
+        "displayName": "Jake Matthews",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/aus.png",
+         "alt": "Australia",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "4394753",
+       "order": 2,
+       "athlete": {
+        "fullName": "Tahir Abdullayev",
+        "displayName": "Tahir Abdullayev",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/aze.png",
+         "alt": "Azerbaijan",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401927852",
+     "date": "2026-11-21T18:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "982",
+      "abbreviation": "Heavyweight"
+     },
+     "competitors": [
+      {
+       "id": "5145498",
+       "order": 1,
+       "athlete": {
+        "fullName": "Shamil Gaziev",
+        "displayName": "Shamil Gaziev",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/brn.png",
+         "alt": "Bahrain",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5212856",
+       "order": 2,
+       "athlete": {
+        "fullName": "Tallison Teixeira",
+        "displayName": "Tallison Teixeira",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
+         "alt": "Brazil",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401927851",
+     "date": "2026-11-21T18:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "972",
+      "abbreviation": "Middleweight"
+     },
+     "competitors": [
+      {
+       "id": "3154860",
+       "order": 1,
+       "athlete": {
+        "fullName": "Jared Cannonier",
+        "displayName": "Jared Cannonier",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "4684776",
+       "order": 2,
+       "athlete": {
+        "fullName": "Ikram Aliskerov",
+        "displayName": "Ikram Aliskerov",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/rus.png",
+         "alt": "Russia",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401922278",
+     "date": "2026-11-21T18:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "986",
+      "abbreviation": "Lightweight"
+     },
+     "competitors": [
+      {
+       "id": "3045737",
+       "order": 2,
+       "athlete": {
+        "fullName": "Brian Ortega",
+        "displayName": "Brian Ortega",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "3109135",
+       "order": 1,
+       "athlete": {
+        "fullName": "Dan Hooker",
+        "displayName": "Dan Hooker",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/nzl.png",
+         "alt": "New Zealand",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401927850",
+     "date": "2026-11-21T18:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "999",
+      "abbreviation": "Featherweight"
+     },
+     "competitors": [
+      {
+       "id": "3031559",
+       "order": 1,
+       "athlete": {
+        "fullName": "Aljamain Sterling",
+        "displayName": "Aljamain Sterling",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+         "alt": "USA",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5145681",
+       "order": 2,
+       "athlete": {
+        "fullName": "Kevin Vallejos",
+        "displayName": "Kevin Vallejos",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/arg.png",
+         "alt": "Argentina",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "401922277",
+     "date": "2026-11-21T18:00Z",
+     "timeValid": true,
+     "type": {
+      "id": "990",
+      "abbreviation": "Light Heavyweight"
+     },
+     "competitors": [
+      {
+       "id": "3156612",
+       "order": 1,
+       "athlete": {
+        "fullName": "Jiří Procházka",
+        "displayName": "Jiří Procházka",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/cze.png",
+         "alt": "Czechia",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      },
+      {
+       "id": "5216713",
+       "order": 2,
+       "athlete": {
+        "fullName": "Navajo Stirling",
+        "displayName": "Navajo Stirling",
+        "flag": {
+         "href": "https://a.espncdn.com/i/teamlogos/countries/500/nzl.png",
+         "alt": "New Zealand",
+         "rel": [
+          "country-flag"
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

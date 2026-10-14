@@ -1,0 +1,803 @@
+{
+ "LiveEventDetail": {
+  "EventId": 1332,
+  "Name": "UFC Fight Night: Buckley vs. Malott",
+  "StartTime": "2026-10-17T21:00Z",
+  "TimeZone": "GMT-06:00",
+  "Status": "Upcoming",
+  "Organization": {
+   "OrganizationId": 1,
+   "Name": "Ultimate Fighting Championship"
+  },
+  "Location": {
+   "City": "Edmonton",
+   "State": "Alberta",
+   "Country": "Canada",
+   "TriCode": "CAN",
+   "VenueId": 288,
+   "Venue": "Rogers Place"
+  },
+  "FightCard": [
+   {
+    "FightId": 13002,
+    "FightOrder": 1,
+    "Status": "Upcoming",
+    "CardSegment": "Main",
+    "CardSegmentStartTime": "2026-10-18T00:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 4,
+     "CatchWeight": null,
+     "Weight": "156-170",
+     "Description": "Welterweight",
+     "Abbreviation": "WW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 3536,
+      "Name": {
+       "FirstName": "Joaquin",
+       "LastName": "Buckley",
+       "NickName": "New Mansa"
+      },
+      "Born": {
+       "City": "St. Louis",
+       "State": "Missouri",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "St. Louis",
+       "State": "Missouri",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 2642,
+      "Name": {
+       "FirstName": "Mike",
+       "LastName": "Malott",
+       "NickName": "Proper"
+      },
+      "Born": {
+       "City": "Cleveland",
+       "State": "Ohio",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Fonthill",
+       "State": "Ontario",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13046,
+    "FightOrder": 2,
+    "Status": "Upcoming",
+    "CardSegment": "Main",
+    "CardSegmentStartTime": "2026-10-18T00:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 35,
+     "CatchWeight": null,
+     "Weight": "116-125",
+     "Description": "Women's Flyweight",
+     "Abbreviation": "WFLW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 3647,
+      "Name": {
+       "FirstName": "Erin",
+       "LastName": "Blanchfield",
+       "NickName": "Cold Blooded"
+      },
+      "Born": {
+       "City": "New York City",
+       "State": "New York",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Elmwood Park",
+       "State": "New Jersey",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 3663,
+      "Name": {
+       "FirstName": "Jasmine",
+       "LastName": "Jasudavicius",
+       "NickName": null
+      },
+      "Born": {
+       "City": "St. Catharines",
+       "State": "Ontario",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "FightingOutOf": {
+       "City": "Niagara Falls",
+       "State": "Ontario",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13158,
+    "FightOrder": 3,
+    "Status": "Upcoming",
+    "CardSegment": "Main",
+    "CardSegmentStartTime": "2026-10-18T00:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 5,
+     "CatchWeight": null,
+     "Weight": "146-155",
+     "Description": "Lightweight",
+     "Abbreviation": "LW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 3228,
+      "Name": {
+       "FirstName": "Kyle",
+       "LastName": "Nelson",
+       "NickName": "The Monster"
+      },
+      "Born": {
+       "City": "Huntsville",
+       "State": "Ontario",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "FightingOutOf": {
+       "City": "Stoney Creek",
+       "State": "Ontario",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4352,
+      "Name": {
+       "FirstName": "Cristian",
+       "LastName": "Perez",
+       "NickName": "Puas"
+      },
+      "Born": {
+       "City": "Ensenada",
+       "State": "Baja California",
+       "Country": "Mexico",
+       "TriCode": "MEX"
+      },
+      "FightingOutOf": {
+       "City": "Ensenada",
+       "State": "Baja California",
+       "Country": "Mexico",
+       "TriCode": "MEX"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13047,
+    "FightOrder": 4,
+    "Status": "Upcoming",
+    "CardSegment": "Main",
+    "CardSegmentStartTime": "2026-10-18T00:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 3,
+     "CatchWeight": null,
+     "Weight": "171-185",
+     "Description": "Middleweight",
+     "Abbreviation": "MW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 3233,
+      "Name": {
+       "FirstName": "Marc-Andre",
+       "LastName": "Barriault",
+       "NickName": "Powerbar"
+      },
+      "Born": {
+       "City": "Gatineau",
+       "State": "Quebec",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "FightingOutOf": {
+       "City": "Gatineau",
+       "State": "Quebec",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 3311,
+      "Name": {
+       "FirstName": "Kyle",
+       "LastName": "Daukaus",
+       "NickName": null
+      },
+      "Born": {
+       "City": "Philadelphia",
+       "State": "Pennsylvania",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Philadelphia",
+       "State": "Pennsylvania",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13051,
+    "FightOrder": 5,
+    "Status": "Upcoming",
+    "CardSegment": "Main",
+    "CardSegmentStartTime": "2026-10-18T00:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 7,
+     "CatchWeight": null,
+     "Weight": "126-135",
+     "Description": "Bantamweight",
+     "Abbreviation": "BW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 4463,
+      "Name": {
+       "FirstName": "Louis",
+       "LastName": "Jourdain",
+       "NickName": "The Mad Prince"
+      },
+      "Born": {
+       "City": "Beloeil",
+       "State": "Quebec",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "FightingOutOf": {
+       "City": "Montreal",
+       "State": "Quebec",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4070,
+      "Name": {
+       "FirstName": "Timmy",
+       "LastName": "Cuamba",
+       "NickName": "Twilight"
+      },
+      "Born": {
+       "City": "Las Vegas",
+       "State": "Nevada",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Las Vegas",
+       "State": "Nevada",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13016,
+    "FightOrder": 6,
+    "Status": "Upcoming",
+    "CardSegment": "Main",
+    "CardSegmentStartTime": "2026-10-18T00:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 5,
+     "CatchWeight": null,
+     "Weight": "146-155",
+     "Description": "Lightweight",
+     "Abbreviation": "LW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 4413,
+      "Name": {
+       "FirstName": "Mandel",
+       "LastName": "Nallo",
+       "NickName": "Mango"
+      },
+      "Born": {
+       "City": "Vancouver",
+       "State": "British Columbia",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "FightingOutOf": {
+       "City": "Montreal",
+       "State": "Quebec",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 3422,
+      "Name": {
+       "FirstName": "Nate",
+       "LastName": "Landwehr",
+       "NickName": "The Train"
+      },
+      "Born": {
+       "City": "Clarksville",
+       "State": "Tennessee",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Clarksville",
+       "State": "Tennessee",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13049,
+    "FightOrder": 7,
+    "Status": "Upcoming",
+    "CardSegment": "Prelims1",
+    "CardSegmentStartTime": "2026-10-17T21:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 1,
+     "CatchWeight": null,
+     "Weight": "206-265",
+     "Description": "Heavyweight",
+     "Abbreviation": "HW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 3343,
+      "Name": {
+       "FirstName": "Tanner",
+       "LastName": "Boser",
+       "NickName": "The Bulldozer"
+      },
+      "Born": {
+       "City": "Bonnyville",
+       "State": "Alberta",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "FightingOutOf": {
+       "City": "Edmonton",
+       "State": "Alberta",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4039,
+      "Name": {
+       "FirstName": "Jhonata",
+       "LastName": "Diniz",
+       "NickName": null
+      },
+      "Born": {
+       "City": "Curitiba",
+       "State": "Parana",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "FightingOutOf": {
+       "City": "Curitiba",
+       "State": "Parana",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13216,
+    "FightOrder": 8,
+    "Status": "Upcoming",
+    "CardSegment": "Prelims1",
+    "CardSegmentStartTime": "2026-10-17T21:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 3,
+     "CatchWeight": null,
+     "Weight": "171-185",
+     "Description": "Middleweight",
+     "Abbreviation": "MW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 4503,
+      "Name": {
+       "FirstName": "Julien",
+       "LastName": "Leblanc",
+       "NickName": null
+      },
+      "Born": {
+       "City": "Gatineau",
+       "State": "Quebec",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "FightingOutOf": {
+       "City": "Gatineau",
+       "State": "Quebec",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4589,
+      "Name": {
+       "FirstName": "Nick",
+       "LastName": "Galanti",
+       "NickName": null
+      },
+      "Born": {
+       "City": "Freehold",
+       "State": "New Jersey",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Freehold",
+       "State": "New Jersey",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13217,
+    "FightOrder": 9,
+    "Status": "Upcoming",
+    "CardSegment": "Prelims1",
+    "CardSegmentStartTime": "2026-10-17T21:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 1,
+     "CatchWeight": null,
+     "Weight": "206-265",
+     "Description": "Heavyweight",
+     "Abbreviation": "HW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 4658,
+      "Name": {
+       "FirstName": "Javad",
+       "LastName": "Mahjoub",
+       "NickName": null
+      },
+      "Born": {
+       "City": "Chenaran",
+       "State": "Razavi Khorasan",
+       "Country": "Iran",
+       "TriCode": "IRI"
+      },
+      "FightingOutOf": {
+       "City": null,
+       "State": null,
+       "Country": "Iran",
+       "TriCode": "IRI"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4672,
+      "Name": {
+       "FirstName": "Joel",
+       "LastName": "Faglier",
+       "NickName": "The Sniper"
+      },
+      "Born": {
+       "City": "Augusta",
+       "State": "Georgia",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Augusta",
+       "State": "Georgia",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13218,
+    "FightOrder": 10,
+    "Status": "Upcoming",
+    "CardSegment": "Prelims1",
+    "CardSegmentStartTime": "2026-10-17T21:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 35,
+     "CatchWeight": null,
+     "Weight": "116-125",
+     "Description": "Women's Flyweight",
+     "Abbreviation": "WFLW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 2785,
+      "Name": {
+       "FirstName": "Katlyn",
+       "LastName": "Cerminara",
+       "NickName": "Blonde Fighter"
+      },
+      "Born": {
+       "City": "Quakertown",
+       "State": "Pennsylvania",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Quakertown",
+       "State": "Pennsylvania",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4678,
+      "Name": {
+       "FirstName": "Mackenzie",
+       "LastName": "Stiller",
+       "NickName": "Mack-Judo"
+      },
+      "Born": {
+       "City": "McHenry",
+       "State": "Illinois",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Twin Lakes",
+       "State": "Wisconsin",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13095,
+    "FightOrder": 11,
+    "Status": "Upcoming",
+    "CardSegment": "Prelims1",
+    "CardSegmentStartTime": "2026-10-17T21:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 7,
+     "CatchWeight": null,
+     "Weight": "126-135",
+     "Description": "Bantamweight",
+     "Abbreviation": "BW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 3684,
+      "Name": {
+       "FirstName": "Chad",
+       "LastName": "Anheliger",
+       "NickName": "The Monster"
+      },
+      "Born": {
+       "City": "Kelowna",
+       "State": "British Columbia",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "FightingOutOf": {
+       "City": "Calgary",
+       "State": "Alberta",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 3961,
+      "Name": {
+       "FirstName": "Steven",
+       "LastName": "Koslow",
+       "NickName": "The Pillow"
+      },
+      "Born": {
+       "City": "Jacksonville",
+       "State": "Florida",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Jacksonville",
+       "State": "Florida",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13050,
+    "FightOrder": 12,
+    "Status": "Upcoming",
+    "CardSegment": "Prelims1",
+    "CardSegmentStartTime": "2026-10-17T21:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 25,
+     "CatchWeight": null,
+     "Weight": "126-135",
+     "Description": "Women's Bantamweight",
+     "Abbreviation": "WBW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 4487,
+      "Name": {
+       "FirstName": "Melissa",
+       "LastName": "Croden",
+       "NickName": "Scare"
+      },
+      "Born": {
+       "City": "Toronto",
+       "State": "Ontario",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "FightingOutOf": {
+       "City": "Calgary",
+       "State": "Alberta",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 3883,
+      "Name": {
+       "FirstName": "Chelsea",
+       "LastName": "Chandler",
+       "NickName": null
+      },
+      "Born": {
+       "City": "Stockton",
+       "State": "California",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Stockton",
+       "State": "California",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13132,
+    "FightOrder": 13,
+    "Status": "Upcoming",
+    "CardSegment": "Prelims1",
+    "CardSegmentStartTime": "2026-10-17T21:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 7,
+     "CatchWeight": null,
+     "Weight": "126-135",
+     "Description": "Bantamweight",
+     "Abbreviation": "BW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 4436,
+      "Name": {
+       "FirstName": "Cody",
+       "LastName": "Chovancek",
+       "NickName": "The Best Fisherman in MMA"
+      },
+      "Born": {
+       "City": "Sarnia",
+       "State": "Ontario",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "FightingOutOf": {
+       "City": "Niagara Falls",
+       "State": "Ontario",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4185,
+      "Name": {
+       "FirstName": "SuYoung",
+       "LastName": "You",
+       "NickName": "Yoo-Jitsu"
+      },
+      "Born": {
+       "City": "Seoul",
+       "State": null,
+       "Country": "South Korea",
+       "TriCode": "KOR"
+      },
+      "FightingOutOf": {
+       "City": "Gunpo",
+       "State": "Gyeonggi-do",
+       "Country": "South Korea",
+       "TriCode": "KOR"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   }
+  ]
+ }
+}

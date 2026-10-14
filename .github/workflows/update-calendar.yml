@@ -1,0 +1,71 @@
+name: Update UFC calendar
+
+on:
+  schedule:
+    # 23:43 UTC = 08:43 KST. Scheduled runs often start several minutes late (and runs at
+    # the top of the hour are delayed the most), so the calendar is refreshed around 9:00 KST.
+    - cron: "43 23 * * *"
+  workflow_dispatch:
+    inputs:
+      allow_drop:
+        description: "Publish even if many events or entries disappeared since the last run"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: astral-sh/setup-uv@v10
+
+      - name: Read GitHub Pages settings
+        id: pages
+        uses: actions/configure-pages@v6
+
+      - name: Install dependencies
+        run: uv sync --locked
+
+      - name: Run tests
+        run: uv run pytest -q
+
+      # Collects, validates, filters and builds ufc.ics. It reads the previous run's
+      # state.json from GitHub Pages to keep UIDs stable and detect cancellations, and exits
+      # with an error (so nothing is deployed and the published calendar stays as it is) when
+      # collection fails or the data looks wrong.
+      - name: Build calendar
+        env:
+          PREVIOUS_STATE: ${{ steps.pages.outputs.base_url }}/state.json
+          ALLOW_DROP: ${{ inputs.allow_drop }}
+        run: |
+          args=(--output-dir public --previous-state "$PREVIOUS_STATE")
+          if [ "$ALLOW_DROP" = "true" ]; then args+=(--allow-drop); fi
+          uv run ufc-calendar "${args[@]}"
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}ufc.ics
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

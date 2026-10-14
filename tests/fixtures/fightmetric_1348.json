@@ -1,0 +1,563 @@
+{
+ "LiveEventDetail": {
+  "EventId": 1348,
+  "Name": "UFC Fight Night: Prochazka vs. Stirling",
+  "StartTime": "2026-11-21T22:00Z",
+  "TimeZone": null,
+  "Status": "Upcoming",
+  "Organization": {
+   "OrganizationId": 1,
+   "Name": "Ultimate Fighting Championship"
+  },
+  "Location": {
+   "City": "Doha",
+   "State": null,
+   "Country": "Qatar",
+   "TriCode": "QAT",
+   "VenueId": 344,
+   "Venue": "ABHA Arena"
+  },
+  "FightCard": [
+   {
+    "FightId": 13197,
+    "FightOrder": 1,
+    "Status": "Upcoming",
+    "CardSegment": null,
+    "CardSegmentStartTime": null,
+    "CardSegmentBroadcaster": null,
+    "WeightClass": {
+     "WeightClassId": 2,
+     "CatchWeight": null,
+     "Weight": "186-205",
+     "Description": "Light Heavyweight",
+     "Abbreviation": "LHW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 3438,
+      "Name": {
+       "FirstName": "Jiri",
+       "LastName": "Prochazka",
+       "NickName": null
+      },
+      "Born": {
+       "City": "Hosteradice",
+       "State": null,
+       "Country": "Czech Republic",
+       "TriCode": "CZE"
+      },
+      "FightingOutOf": {
+       "City": "Brno",
+       "State": null,
+       "Country": "Czech Republic",
+       "TriCode": "CZE"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4252,
+      "Name": {
+       "FirstName": "Navajo",
+       "LastName": "Stirling",
+       "NickName": null
+      },
+      "Born": {
+       "City": "Upper Hutt",
+       "State": null,
+       "Country": "New Zealand",
+       "TriCode": "NZL"
+      },
+      "FightingOutOf": {
+       "City": "Auckland",
+       "State": null,
+       "Country": "New Zealand",
+       "TriCode": "NZL"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13198,
+    "FightOrder": 2,
+    "Status": "Upcoming",
+    "CardSegment": null,
+    "CardSegmentStartTime": null,
+    "CardSegmentBroadcaster": null,
+    "WeightClass": {
+     "WeightClassId": 6,
+     "CatchWeight": null,
+     "Weight": "136-145",
+     "Description": "Featherweight",
+     "Abbreviation": "FTW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 2177,
+      "Name": {
+       "FirstName": "Aljamain",
+       "LastName": "Sterling",
+       "NickName": "Funk Master"
+      },
+      "Born": {
+       "City": "Long Island",
+       "State": "New York",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Uniondale",
+       "State": "New York",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4066,
+      "Name": {
+       "FirstName": "Kevin",
+       "LastName": "Vallejos",
+       "NickName": "El Chino"
+      },
+      "Born": {
+       "City": "Mar del Plata",
+       "State": "Buenos Aires",
+       "Country": "Argentina",
+       "TriCode": "ARG"
+      },
+      "FightingOutOf": {
+       "City": "Mar del Plata",
+       "State": "Buenos Aires",
+       "Country": "Argentina",
+       "TriCode": "ARG"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13199,
+    "FightOrder": 3,
+    "Status": "Upcoming",
+    "CardSegment": null,
+    "CardSegmentStartTime": null,
+    "CardSegmentBroadcaster": null,
+    "WeightClass": {
+     "WeightClassId": 5,
+     "CatchWeight": null,
+     "Weight": "146-155",
+     "Description": "Lightweight",
+     "Abbreviation": "LW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 2254,
+      "Name": {
+       "FirstName": "Dan",
+       "LastName": "Hooker",
+       "NickName": "The Hangman"
+      },
+      "Born": {
+       "City": "Auckland",
+       "State": null,
+       "Country": "New Zealand",
+       "TriCode": "NZL"
+      },
+      "FightingOutOf": {
+       "City": "Auckland",
+       "State": null,
+       "Country": "New Zealand",
+       "TriCode": "NZL"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 2238,
+      "Name": {
+       "FirstName": "Brian",
+       "LastName": "Ortega",
+       "NickName": "T-City"
+      },
+      "Born": {
+       "City": "Los Angeles",
+       "State": "California",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Los Angeles",
+       "State": "California",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13192,
+    "FightOrder": 4,
+    "Status": "Upcoming",
+    "CardSegment": null,
+    "CardSegmentStartTime": null,
+    "CardSegmentBroadcaster": null,
+    "WeightClass": {
+     "WeightClassId": 3,
+     "CatchWeight": null,
+     "Weight": "171-185",
+     "Description": "Middleweight",
+     "Abbreviation": "MW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 2337,
+      "Name": {
+       "FirstName": "Jared",
+       "LastName": "Cannonier",
+       "NickName": "The Killa Gorilla"
+      },
+      "Born": {
+       "City": "Dallas",
+       "State": "Texas",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Glendale",
+       "State": "Arizona",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 3891,
+      "Name": {
+       "FirstName": "Ikram",
+       "LastName": "Aliskerov",
+       "NickName": null
+      },
+      "Born": {
+       "City": "Makhachkala",
+       "State": "Dagestan",
+       "Country": "Russia",
+       "TriCode": "RUS"
+      },
+      "FightingOutOf": {
+       "City": "Makhachkala",
+       "State": "Dagestan",
+       "Country": "Russia",
+       "TriCode": "RUS"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13200,
+    "FightOrder": 5,
+    "Status": "Upcoming",
+    "CardSegment": null,
+    "CardSegmentStartTime": null,
+    "CardSegmentBroadcaster": null,
+    "WeightClass": {
+     "WeightClassId": 1,
+     "CatchWeight": null,
+     "Weight": "206-265",
+     "Description": "Heavyweight",
+     "Abbreviation": "HW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 4046,
+      "Name": {
+       "FirstName": "Shamil",
+       "LastName": "Gaziev",
+       "NickName": null
+      },
+      "Born": {
+       "City": "Khunzakh",
+       "State": "Dagestan",
+       "Country": "Russia",
+       "TriCode": "RUS"
+      },
+      "FightingOutOf": {
+       "City": null,
+       "State": null,
+       "Country": "Bahrain",
+       "TriCode": "BRN"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4231,
+      "Name": {
+       "FirstName": "Tallison",
+       "LastName": "Teixeira",
+       "NickName": "Xicao"
+      },
+      "Born": {
+       "City": "Vitoria da Conquista",
+       "State": "Bahia",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "FightingOutOf": {
+       "City": "Sao Paulo",
+       "State": "Sao Paulo",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13193,
+    "FightOrder": 6,
+    "Status": "Upcoming",
+    "CardSegment": null,
+    "CardSegmentStartTime": null,
+    "CardSegmentBroadcaster": null,
+    "WeightClass": {
+     "WeightClassId": 4,
+     "CatchWeight": null,
+     "Weight": "156-170",
+     "Description": "Welterweight",
+     "Abbreviation": "WW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 2258,
+      "Name": {
+       "FirstName": "Jake",
+       "LastName": "Matthews",
+       "NickName": "The Celtic Kid"
+      },
+      "Born": {
+       "City": "Melbourne",
+       "State": "Victoria",
+       "Country": "Australia",
+       "TriCode": "AUS"
+      },
+      "FightingOutOf": {
+       "City": "Epping",
+       "State": "Victoria",
+       "Country": "Australia",
+       "TriCode": "AUS"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4552,
+      "Name": {
+       "FirstName": "Tahir",
+       "LastName": "Abdullayev",
+       "NickName": "Tank"
+      },
+      "Born": {
+       "City": "Masalli",
+       "State": null,
+       "Country": "Azerbaijan",
+       "TriCode": "AZE"
+      },
+      "FightingOutOf": {
+       "City": "Baku",
+       "State": null,
+       "Country": "Azerbaijan",
+       "TriCode": "AZE"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13194,
+    "FightOrder": 7,
+    "Status": "Upcoming",
+    "CardSegment": null,
+    "CardSegmentStartTime": null,
+    "CardSegmentBroadcaster": null,
+    "WeightClass": {
+     "WeightClassId": 7,
+     "CatchWeight": null,
+     "Weight": "126-135",
+     "Description": "Bantamweight",
+     "Abbreviation": "BW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 4238,
+      "Name": {
+       "FirstName": "Aleksandre",
+       "LastName": "Topuria",
+       "NickName": "El Conquistador"
+      },
+      "Born": {
+       "City": "Halle",
+       "State": "Saxony-Anhalt",
+       "Country": "Germany",
+       "TriCode": "GER"
+      },
+      "FightingOutOf": {
+       "City": "Alicante",
+       "State": "Comunidad Valenciana",
+       "Country": "Spain",
+       "TriCode": "ESP"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4483,
+      "Name": {
+       "FirstName": "Santiago",
+       "LastName": "Luna",
+       "NickName": "BorderBoy"
+      },
+      "Born": {
+       "City": "San Diego",
+       "State": "California",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Tijuana",
+       "State": "Baja California",
+       "Country": "Mexico",
+       "TriCode": "MEX"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13195,
+    "FightOrder": 8,
+    "Status": "Upcoming",
+    "CardSegment": null,
+    "CardSegmentStartTime": null,
+    "CardSegmentBroadcaster": null,
+    "WeightClass": {
+     "WeightClassId": 8,
+     "CatchWeight": null,
+     "Weight": "116-125",
+     "Description": "Flyweight",
+     "Abbreviation": "FLW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 4008,
+      "Name": {
+       "FirstName": "Asu",
+       "LastName": "Almabayev",
+       "NickName": "Zulfikar"
+      },
+      "Born": {
+       "City": "Taraz",
+       "State": "Jambyl",
+       "Country": "Kazakstan",
+       "TriCode": "KAZ"
+      },
+      "FightingOutOf": {
+       "City": null,
+       "State": "Almaty",
+       "Country": "Kazakstan",
+       "TriCode": "KAZ"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 2103,
+      "Name": {
+       "FirstName": "Kyoji",
+       "LastName": "Horiguchi",
+       "NickName": "Karate Kid"
+      },
+      "Born": {
+       "City": "Takasaki",
+       "State": "Gunma",
+       "Country": "Japan",
+       "TriCode": "JPN"
+      },
+      "FightingOutOf": {
+       "City": "Coconut Creek",
+       "State": "Florida",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13196,
+    "FightOrder": 9,
+    "Status": "Upcoming",
+    "CardSegment": null,
+    "CardSegmentStartTime": null,
+    "CardSegmentBroadcaster": null,
+    "WeightClass": {
+     "WeightClassId": 8,
+     "CatchWeight": null,
+     "Weight": "116-125",
+     "Description": "Flyweight",
+     "Abbreviation": "FLW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 3478,
+      "Name": {
+       "FirstName": "Amir",
+       "LastName": "Albazi",
+       "NickName": "The Prince"
+      },
+      "Born": {
+       "City": "Baghdad",
+       "State": "Baghdad",
+       "Country": "Iraq",
+       "TriCode": "IRQ"
+      },
+      "FightingOutOf": {
+       "City": "Baghdad",
+       "State": "Baghdad",
+       "Country": "Iraq",
+       "TriCode": "IRQ"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 3831,
+      "Name": {
+       "FirstName": "Alessandro",
+       "LastName": "Costa",
+       "NickName": "Nono"
+      },
+      "Born": {
+       "City": "Manaus",
+       "State": "Amazonas",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "FightingOutOf": {
+       "City": "Manaus",
+       "State": "Amazonas",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   }
+  ]
+ }
+}

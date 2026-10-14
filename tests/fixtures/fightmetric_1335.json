@@ -1,0 +1,748 @@
+{
+ "LiveEventDetail": {
+  "EventId": 1335,
+  "Name": "UFC 331: Van vs. Pantoja 2",
+  "StartTime": "2026-09-19T21:30Z",
+  "TimeZone": "GMT-07:00",
+  "Status": "Final",
+  "Organization": {
+   "OrganizationId": 1,
+   "Name": "Ultimate Fighting Championship"
+  },
+  "Location": {
+   "City": "Los Angeles",
+   "State": "California",
+   "Country": "USA",
+   "TriCode": "USA",
+   "VenueId": 160,
+   "Venue": "Crypto.com Arena"
+  },
+  "FightCard": [
+   {
+    "FightId": 13017,
+    "FightOrder": 1,
+    "Status": "Final",
+    "CardSegment": "Main",
+    "CardSegmentStartTime": "2026-09-20T01:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 8,
+     "CatchWeight": null,
+     "Weight": "116-125",
+     "Description": "Flyweight",
+     "Abbreviation": "FLW"
+    },
+    "Accolades": [
+     {
+      "Type": "Belt",
+      "Name": "UFC Flyweight Title"
+     }
+    ],
+    "Fighters": [
+     {
+      "FighterId": 3989,
+      "Name": {
+       "FirstName": "Joshua",
+       "LastName": "Van",
+       "NickName": "The Fearless"
+      },
+      "Born": {
+       "City": "Hakha",
+       "State": "Chin",
+       "Country": "Myanmar",
+       "TriCode": "MYA"
+      },
+      "FightingOutOf": {
+       "City": "Houston",
+       "State": "Texas",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 2858,
+      "Name": {
+       "FirstName": "Alexandre",
+       "LastName": "Pantoja",
+       "NickName": "The Cannibal"
+      },
+      "Born": {
+       "City": "Rio de Janeiro",
+       "State": "Rio de Janeiro",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "FightingOutOf": {
+       "City": "Arraial Do Cabo",
+       "State": "Rio de Janeiro",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13018,
+    "FightOrder": 2,
+    "Status": "Final",
+    "CardSegment": "Main",
+    "CardSegmentStartTime": "2026-09-20T01:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 5,
+     "CatchWeight": null,
+     "Weight": "146-155",
+     "Description": "Lightweight",
+     "Abbreviation": "LW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 3269,
+      "Name": {
+       "FirstName": "Arman",
+       "LastName": "Tsarukyan",
+       "NickName": "The Batman"
+      },
+      "Born": {
+       "City": "Akhalkalaki",
+       "State": "Samtskhe-Javakheti",
+       "Country": "Georgia",
+       "TriCode": "GEO"
+      },
+      "FightingOutOf": {
+       "City": "Yerevan",
+       "State": null,
+       "Country": "Armenia",
+       "TriCode": "ARM"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4138,
+      "Name": {
+       "FirstName": "Mauricio",
+       "LastName": "Ruffy",
+       "NickName": null
+      },
+      "Born": {
+       "City": "Sao Paulo",
+       "State": "Sao Paulo",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "FightingOutOf": {
+       "City": "Coruripe",
+       "State": "Alagoas",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13025,
+    "FightOrder": 3,
+    "Status": "Final",
+    "CardSegment": "Main",
+    "CardSegmentStartTime": "2026-09-20T01:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 6,
+     "CatchWeight": null,
+     "Weight": "136-145",
+     "Description": "Featherweight",
+     "Abbreviation": "FTW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 2393,
+      "Name": {
+       "FirstName": "Patricio",
+       "LastName": "Pitbull",
+       "NickName": null
+      },
+      "Born": {
+       "City": "Mossoro",
+       "State": "Rio Grande do Norte",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "FightingOutOf": {
+       "City": "Natal",
+       "State": "Rio Grande do Norte",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 2198,
+      "Name": {
+       "FirstName": "Dooho",
+       "LastName": "Choi",
+       "NickName": "The Korean Superboy"
+      },
+      "Born": {
+       "City": "Daegu",
+       "State": "Yeongnam",
+       "Country": "South Korea",
+       "TriCode": "KOR"
+      },
+      "FightingOutOf": {
+       "City": "Daegu",
+       "State": "Yeongnam",
+       "Country": "South Korea",
+       "TriCode": "KOR"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13019,
+    "FightOrder": 4,
+    "Status": "Final",
+    "CardSegment": "Main",
+    "CardSegmentStartTime": "2026-09-20T01:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 1,
+     "CatchWeight": null,
+     "Weight": "206-265",
+     "Description": "Heavyweight",
+     "Abbreviation": "HW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 4535,
+      "Name": {
+       "FirstName": "Gable",
+       "LastName": "Steveson",
+       "NickName": null
+      },
+      "Born": {
+       "City": "Minneapolis",
+       "State": "Minnesota",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Albuquerque",
+       "State": "New Mexico",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4307,
+      "Name": {
+       "FirstName": "Sean",
+       "LastName": "Sharaf",
+       "NickName": "The Smoke"
+      },
+      "Born": {
+       "City": "Anaheim",
+       "State": "California",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Santa Ana",
+       "State": "California",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13024,
+    "FightOrder": 5,
+    "Status": "Final",
+    "CardSegment": "Main",
+    "CardSegmentStartTime": "2026-09-20T01:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 2,
+     "CatchWeight": null,
+     "Weight": "186-205",
+     "Description": "Light Heavyweight",
+     "Abbreviation": "LHW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 2686,
+      "Name": {
+       "FirstName": "Alonzo",
+       "LastName": "Menifield",
+       "NickName": "Atomic"
+      },
+      "Born": {
+       "City": "Los Angeles",
+       "State": "California",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Dallas",
+       "State": "Texas",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4394,
+      "Name": {
+       "FirstName": "Iwo",
+       "LastName": "Baraniewski",
+       "NickName": "Rudy"
+      },
+      "Born": {
+       "City": "Warsaw",
+       "State": null,
+       "Country": "Poland",
+       "TriCode": "POL"
+      },
+      "FightingOutOf": {
+       "City": "Warsaw",
+       "State": null,
+       "Country": "Poland",
+       "TriCode": "POL"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13023,
+    "FightOrder": 6,
+    "Status": "Final",
+    "CardSegment": "Prelims1",
+    "CardSegmentStartTime": "2026-09-19T23:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 7,
+     "CatchWeight": null,
+     "Weight": "126-135",
+     "Description": "Bantamweight",
+     "Abbreviation": "BW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 2359,
+      "Name": {
+       "FirstName": "Marlon",
+       "LastName": "Vera",
+       "NickName": "Chito"
+      },
+      "Born": {
+       "City": "Chone",
+       "State": "Manabi",
+       "Country": "Ecuador",
+       "TriCode": "ECU"
+      },
+      "FightingOutOf": {
+       "City": "Chone",
+       "State": "Manabi",
+       "Country": "Ecuador",
+       "TriCode": "ECU"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 3292,
+      "Name": {
+       "FirstName": "Charles",
+       "LastName": "Jourdain",
+       "NickName": "Air"
+      },
+      "Born": {
+       "City": "Beloeil",
+       "State": "Quebec",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "FightingOutOf": {
+       "City": "Beloeil",
+       "State": "Quebec",
+       "Country": "Canada",
+       "TriCode": "CAN"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13020,
+    "FightOrder": 7,
+    "Status": "Final",
+    "CardSegment": "Prelims1",
+    "CardSegmentStartTime": "2026-09-19T23:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 1,
+     "CatchWeight": null,
+     "Weight": "206-265",
+     "Description": "Heavyweight",
+     "Abbreviation": "HW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 3015,
+      "Name": {
+       "FirstName": "Tai",
+       "LastName": "Tuivasa",
+       "NickName": "Bam Bam"
+      },
+      "Born": {
+       "City": "Kingswood",
+       "State": "New South Wales",
+       "Country": "Australia",
+       "TriCode": "AUS"
+      },
+      "FightingOutOf": {
+       "City": "Sydney",
+       "State": "New South Wales",
+       "Country": "Australia",
+       "TriCode": "AUS"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4161,
+      "Name": {
+       "FirstName": "Robelis",
+       "LastName": "Despaigne",
+       "NickName": "The Big Boy"
+      },
+      "Born": {
+       "City": "Santiago de Cuba",
+       "State": "Santiago de Cuba",
+       "Country": "Cuba",
+       "TriCode": "CUB"
+      },
+      "FightingOutOf": {
+       "City": "Santiago de Cuba",
+       "State": "Santiago de Cuba",
+       "Country": "Cuba",
+       "TriCode": "CUB"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13029,
+    "FightOrder": 8,
+    "Status": "Final",
+    "CardSegment": "Prelims1",
+    "CardSegmentStartTime": "2026-09-19T23:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 6,
+     "CatchWeight": null,
+     "Weight": "136-145",
+     "Description": "Featherweight",
+     "Abbreviation": "FTW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 4226,
+      "Name": {
+       "FirstName": "Michael",
+       "LastName": "Aswell Jr.",
+       "NickName": "The Texas Kid"
+      },
+      "Born": {
+       "City": "Houston",
+       "State": "Texas",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Houston",
+       "State": "Texas",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4317,
+      "Name": {
+       "FirstName": "JooSang",
+       "LastName": "Yoo",
+       "NickName": "Zombie Jr."
+      },
+      "Born": {
+       "City": "Seoul",
+       "State": null,
+       "Country": "South Korea",
+       "TriCode": "KOR"
+      },
+      "FightingOutOf": {
+       "City": "Seoul",
+       "State": null,
+       "Country": "South Korea",
+       "TriCode": "KOR"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13021,
+    "FightOrder": 9,
+    "Status": "Final",
+    "CardSegment": "Prelims1",
+    "CardSegmentStartTime": "2026-09-19T23:00Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 3,
+     "CatchWeight": null,
+     "Weight": "171-185",
+     "Description": "Middleweight",
+     "Abbreviation": "MW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 4385,
+      "Name": {
+       "FirstName": "Ryan",
+       "LastName": "Gandra",
+       "NickName": "Problema"
+      },
+      "Born": {
+       "City": null,
+       "State": "Minas Gerais",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "FightingOutOf": {
+       "City": "Betim",
+       "State": "Minas Gerais",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 3861,
+      "Name": {
+       "FirstName": "Ozzy",
+       "LastName": "Diaz",
+       "NickName": null
+      },
+      "Born": {
+       "City": "Los Angeles",
+       "State": "California",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Los Angeles",
+       "State": "California",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13026,
+    "FightOrder": 10,
+    "Status": "Final",
+    "CardSegment": "Prelims2",
+    "CardSegmentStartTime": "2026-09-19T21:30Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 3,
+     "CatchWeight": null,
+     "Weight": "171-185",
+     "Description": "Middleweight",
+     "Abbreviation": "MW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 3121,
+      "Name": {
+       "FirstName": "Edmen",
+       "LastName": "Shahbazyan",
+       "NickName": "The Golden Boy"
+      },
+      "Born": {
+       "City": "Los Angeles",
+       "State": "California",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "FightingOutOf": {
+       "City": "Las Vegas",
+       "State": "Nevada",
+       "Country": "USA",
+       "TriCode": "USA"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 3890,
+      "Name": {
+       "FirstName": "Brunno",
+       "LastName": "Ferreira",
+       "NickName": "The Hulk"
+      },
+      "Born": {
+       "City": "Curitiba",
+       "State": "Parana",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "FightingOutOf": {
+       "City": "Curitiba",
+       "State": "Parana",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13028,
+    "FightOrder": 11,
+    "Status": "Final",
+    "CardSegment": "Prelims2",
+    "CardSegmentStartTime": "2026-09-19T21:30Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 35,
+     "CatchWeight": null,
+     "Weight": "116-125",
+     "Description": "Women's Flyweight",
+     "Abbreviation": "WFLW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 3609,
+      "Name": {
+       "FirstName": "Casey",
+       "LastName": "O'Neill",
+       "NickName": "King"
+      },
+      "Born": {
+       "City": "Irvine",
+       "State": "Scotland",
+       "Country": "United Kingdom",
+       "TriCode": "GBR"
+      },
+      "FightingOutOf": {
+       "City": "Gold Coast",
+       "State": "Queensland",
+       "Country": "Australia",
+       "TriCode": "AUS"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 4016,
+      "Name": {
+       "FirstName": "Eduarda",
+       "LastName": "Moura",
+       "NickName": "Ronda"
+      },
+      "Born": {
+       "City": "Riachuelo",
+       "State": "Sergipe",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "FightingOutOf": {
+       "City": "Feira de Santana",
+       "State": "Bahia",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   },
+   {
+    "FightId": 13027,
+    "FightOrder": 12,
+    "Status": "Final",
+    "CardSegment": "Prelims2",
+    "CardSegmentStartTime": "2026-09-19T21:30Z",
+    "CardSegmentBroadcaster": "Paramount+",
+    "WeightClass": {
+     "WeightClassId": 6,
+     "CatchWeight": null,
+     "Weight": "136-145",
+     "Description": "Featherweight",
+     "Abbreviation": "FTW"
+    },
+    "Accolades": [],
+    "Fighters": [
+     {
+      "FighterId": 3094,
+      "Name": {
+       "FirstName": "Giga",
+       "LastName": "Chikadze",
+       "NickName": "Ninja"
+      },
+      "Born": {
+       "City": "Tbilisi",
+       "State": null,
+       "Country": "Georgia",
+       "TriCode": "GEO"
+      },
+      "FightingOutOf": {
+       "City": "Tbilisi",
+       "State": null,
+       "Country": "Georgia",
+       "TriCode": "GEO"
+      },
+      "Corner": "Red"
+     },
+     {
+      "FighterId": 3669,
+      "Name": {
+       "FirstName": "Joanderson",
+       "LastName": "Brito",
+       "NickName": "Tubarao"
+      },
+      "Born": {
+       "City": "Santa Helena",
+       "State": "Maranhao",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "FightingOutOf": {
+       "City": "Bauru",
+       "State": "Sao Paulo",
+       "Country": "Brazil",
+       "TriCode": "BRA"
+      },
+      "Corner": "Blue"
+     }
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,30 @@
+[project]
+name = "ufc-calendar"
+version = "0.1.0"
+description = "UFC fights with Korean fighters and main/co-main events as a subscribable iCalendar feed"
+authors = [
+    { name = "Jin-uu", email = "jinu200131@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "icalendar>=7.3.0",
+    "requests>=2.34.2",
+]
+
+[project.scripts]
+ufc-calendar = "ufc_calendar.main:main"
+
+[build-system]
+requires = ["uv_build>=0.8.14,<0.9.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
